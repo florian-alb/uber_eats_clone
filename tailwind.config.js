@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -19,8 +18,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        'ub-green': "#3FC060",
-        'ub-dark': "#162328",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
