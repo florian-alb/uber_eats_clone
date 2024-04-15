@@ -9,7 +9,6 @@ import {Button} from "@/components/ui/button.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {SearchIcon} from "lucide-react";
 
-
 import {
     ToggleGroup,
     ToggleGroupItem,
@@ -23,6 +22,7 @@ import {
 import {useState} from "react";
 
 export default function Navbar() {
+    // @ts-ignore
     const [haveItems, setHaveItems] = useState(false)
 
 
@@ -36,6 +36,7 @@ export default function Navbar() {
                 <div className="text-center text-gray-500">Votre panier est REMPLLIIIIII!</div>
         )
     }
+
 
     return (
         <div className="w-full h-16 flex items-center justify-between px-10 py-5 text-2xl">
