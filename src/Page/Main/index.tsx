@@ -1,19 +1,42 @@
 import {
     Card,
     CardContent,
-    CardHeader
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card"
 import Categories from "@/components/layout/Categories.tsx";
-import Navbar from "@/components/noLib/Navbar.tsx";
 
 export default function MainPage() {
 
+    type cardShop = {
+        name: string
+        email: string
+        image: string
+        id: string
+    }
 
-    function ShopCard() {
-        return (
+    const [cardData, setCardData] = useState([] as cardShop[])
 
-            <Card
-                className="min-w-72 max-w-80 max-h-56 bg-white rounded-xl flex flex-col shadow-none relative border-none">
+    useEffect(() => {
+        fetch("http://localhost:8080/shop/")
+            .then(res => res.json())
+            .then(({data}) => {
+                setCardData(data)
+            })
+    }, [])
+
+    function displayCard() {
+
+        if (!cardData) {
+            return <h1>Failed To fetch the API</h1>
+        }
+
+    function ShopCard(){
+        return(
+
+            <Card className="min-w-72 max-w-80 max-h-56 bg-white rounded-xl flex flex-col shadow-none relative border-none">
                 <CardHeader className="p-0">
                     <img src="src/assets/svg/food.webp" alt="food" className="max-h-32 rounded-xl object-cover"/>
                 </CardHeader>
@@ -33,24 +56,21 @@ export default function MainPage() {
     }
 
 
-    return (
-        <>
-            <Navbar/>
-            <Categories/>
-            <div className="w-full h-full flex justify-center">
-                <div className=" h-full grid grid-cols-4 gap-5 mt-20">
-                    <h3 className="col-span-4 text-2xl font-bold">Top picks for you</h3>
-                    <ShopCard/>
-                    <ShopCard/>
-                    <ShopCard/>
-                    <ShopCard/>
-                    <ShopCard/>
-                    <ShopCard/>
-                    <ShopCard/>
-                    <ShopCard/>
-                    <ShopCard/>
-                </div>
+    return(
+        <Categories/>
+        <div className="w-full h-full flex justify-center">
+            <div className=" h-full grid grid-cols-4 gap-5 mt-24">
+                <h3 className="col-span-4 text-2xl font-bold">Top picks for you</h3>
+                <ShopCard/>
+                <ShopCard/>
+                <ShopCard/>
+                <ShopCard/>
+                <ShopCard/>
+                <ShopCard/>
+                <ShopCard/>
+                <ShopCard/>
+                <ShopCard/>
             </div>
-        </>
+        </div>
     )
 }

@@ -5,12 +5,20 @@ import * as z from "zod";
 import {Form, FormField} from "@/components/ui/form";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import NavbarAuth from "@/components/noLib/NavbarAuth.tsx";
 
 export default function RegisterPage() {
     const formSchema = z.object({
         email: z.string().email(),
         password: z.string().min(8),
         confirmPassword: z.string()
+    }).refine(
+        data => data.password === data.confirmPassword,
+        {
+            message: "Passwords do not match",
+            path: ["confirmPassword"]
+        }
+    );
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -25,6 +33,9 @@ export default function RegisterPage() {
     }
 
     return (
+        <>
+        <NavbarAuth />
+        <div className="size-full flex justify-center flex-col items-center">
         <div className="w-full flex justify-center flex-col items-center">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)}
@@ -93,5 +104,6 @@ export default function RegisterPage() {
             </Form>
             <Button className="pt-10">Déjà un compte ?</Button>
         </div>
+        </>
     )
 }
