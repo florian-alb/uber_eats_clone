@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 
-
 export default function NavbarAuth() {
     return (
         <div className="w-full h-16 flex justify-between items-center px-10 py-5 fixed bg-black text-white">

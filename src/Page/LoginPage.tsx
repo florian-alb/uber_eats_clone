@@ -32,6 +32,7 @@ export default function LoginForm() {
         <>
         <NavbarAuth />
         <div className="h-full flex justify-center flex-col items-center">
+        <div className="w-full flex justify-center flex-col items-center">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)}
                       className="flex flex-col gap-4 px-5 rounded-xl max-w-md w-full">
@@ -81,4 +82,3 @@ export default function LoginForm() {
         </>
     )
 }
-
