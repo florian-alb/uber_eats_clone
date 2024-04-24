@@ -6,6 +6,7 @@ import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/compon
 import {Input} from "@/components/ui/input.tsx";
 import {useForm} from "react-hook-form";
 import {Button} from "@/components/ui/button.tsx";
+import NavbarAuth from "@/components/noLib/NavbarAuth.tsx";
 
 export default function LoginForm() {
 
@@ -28,7 +29,9 @@ export default function LoginForm() {
     }
 
     return (
-        <div className="w-full flex justify-center flex-col items-center">
+        <>
+        <NavbarAuth />
+        <div className="h-full flex justify-center flex-col items-center">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)}
                       className="flex flex-col gap-4 px-5 rounded-xl max-w-md w-full">
@@ -75,5 +78,7 @@ export default function LoginForm() {
             </Form>
             <Button className="pt-10">Créer un compte</Button>
         </div>
+        </>
     )
 }
+
