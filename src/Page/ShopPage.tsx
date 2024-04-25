@@ -4,6 +4,7 @@ import Navbar from "@/components/noLib/Navbar.tsx";
 import ProductCard from "@/components/noLib/ProductCard.tsx";
 import ProductCardLong from "@/components/noLib/ProductCardLong.tsx";
 import {Icons} from "@/Page/MainPage.tsx";
+import {useParams} from "react-router-dom";
 
 
 
@@ -30,6 +31,8 @@ type Shop = {
 
 export default function ShopPage() {
 
+    const shopID = useParams()
+    console.log(shopID)
     const [shopInfo, setShopInfo] = useState<Shop | undefined>(undefined)
 
     useEffect(() => {
@@ -37,7 +40,7 @@ export default function ShopPage() {
     }, [])
 
     async function retrieveShopInfo() {
-        await fetch("http://localhost:8080/shop/e26fbf62-0036-4cb7-8962-e6815cc91a93")
+        await fetch(`http://localhost:8080/shop/${shopID.id}`)
             .then(res => res.json())
             .then(({data}) => {
                 if (!data) {
@@ -64,8 +67,8 @@ export default function ShopPage() {
                     alt="No Image Data"
                      className="w-full h-72 object-cover rounded-xl"/>
                 <div className="mt-5">
-                    <h1 className="text-3xl font-bold">{shopInfo.name}</h1>
-                    <p className="text-gray-500">{shopInfo.Category.name}</p>
+                    <h1 className="text-3xl font-bold">{shopInfo.name ? shopInfo.name : ""}</h1>
+                    <p className="text-gray-500">{shopInfo.Category.name ? shopInfo.Category.name : ""}</p>
                 </div>
             </div>
             <div className="h-screen size-full px-9 pt-20 min-w-screen m-auto flex">
@@ -77,7 +80,7 @@ export default function ShopPage() {
                 <div className="productListing w-4/5 h-full">
                     <div className="font-medium text-2xl m-12">Article en vedettes</div>
                     <Carousel className="pl-0 pt-5 m-12 max-w-8xl min-w-96">
-                        <div className="top-0">
+                        <div >
                             <CarouselPrevious />
                             <CarouselNext />
                         </div>
