@@ -1,8 +1,8 @@
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel.tsx";
 import {useEffect, useState} from "react";
-import Navbar from "@/components/noLib/Navbar.tsx";
-import ProductCard from "@/components/noLib/ProductCard.tsx";
-import ProductCardLong from "@/components/noLib/ProductCardLong.tsx";
+import Navbar from "@/components/Navbar.tsx";
+import ProductCard from "@/components/ProductCard.tsx";
+import ProductCardLong from "@/components/ProductCardLong.tsx";
 import {Icons} from "@/Page/MainPage.tsx";
 import {useParams} from "react-router-dom";
 
@@ -32,7 +32,6 @@ type Shop = {
 export default function ShopPage() {
 
     const shopID = useParams()
-    console.log(shopID)
     const [shopInfo, setShopInfo] = useState<Shop | undefined>(undefined)
 
     useEffect(() => {
@@ -47,9 +46,9 @@ export default function ShopPage() {
                     return
                 }
                 setShopInfo(data)
+                console.log(data)
             })
     }
-
 
 
     if (!shopInfo) return (
@@ -63,16 +62,16 @@ export default function ShopPage() {
             <Navbar/>
             <div className="px-9 pt-20 min-w-screen m-auto h-auto">
                 <img
-                    src={shopInfo.image ? "https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg" : ""}
+                    src={shopInfo.image ?  "/" + shopInfo.image : "https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg"}
                     alt="No Image Data"
                      className="w-full h-72 object-cover rounded-xl"/>
                 <div className="mt-5">
                     <h1 className="text-3xl font-bold">{shopInfo.name ? shopInfo.name : ""}</h1>
-                    <p className="text-gray-500">{shopInfo.Category.name ? shopInfo.Category.name : ""}</p>
+                    <p className="text-gray-500">{shopInfo.Category?.name ? shopInfo.Category.name : ""}</p>
                 </div>
             </div>
             <div className="h-screen size-full px-9 pt-20 min-w-screen m-auto flex">
-                <div className='categoryListing w-1/5 h-full bg-gray-100 rounded-xl shadow-2xl'>
+                <div className='w-1/5 h-full bg-gray-100 rounded-xl shadow-2xl'>
                     {
                         // TODO: Add the category listing here
                     }

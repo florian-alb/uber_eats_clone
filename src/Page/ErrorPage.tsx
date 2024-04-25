@@ -1,4 +1,4 @@
-import NavbarAuth from "@/components/noLib/NavbarAuth.tsx";
+import NavbarAuth from "@/components/NavbarAuth.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Link} from "react-router-dom";
 
