@@ -1,11 +1,11 @@
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, RouterProvider, useParams} from "react-router-dom";
 import MainPage from "@/Page/MainPage.tsx";
 import LoginPage from "@/Page/LoginPage.tsx";
 import RegisterPage from "@/Page/RegisterPage.tsx";
 import ShopPage from "@/Page/ShopPage.tsx";
 import ErrorPage from "@/Page/ErrorPage.tsx";
 
-const router = createBrowserRouter([
+    const router = createBrowserRouter([
     {
         path: "/",
         element: <MainPage />,
