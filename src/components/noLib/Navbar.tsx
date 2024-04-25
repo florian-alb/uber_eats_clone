@@ -25,6 +25,7 @@ import {Link} from "react-router-dom";
 export default function Navbar() {
     const [haveItems, setItems] = useState(false)
 
+
     function cartContent() {
         if (!haveItems) {
             return (
@@ -79,6 +80,7 @@ export default function Navbar() {
                        className="DeliverPosition flex items-center w-full max-w-64 rounded-full px-10   border-none font-medium"/>
                 <img src="/src/assets/svg/map.svg" alt="location"
                      className="absolute mt-2 mx-2 min-w-6 min-h-6 w-6 h-6 gree"/>
+
                 <div className="min-w-96 w-full mx-5">
                     <SearchIcon className="w-4 h-4 mt-3 ml-4 absolute"/>
                     <Input type="text" placeholder="Rechercher dans Uber Eats"

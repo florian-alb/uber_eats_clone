@@ -1,17 +1,11 @@
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import MainPage from "@/Page/Main";
+import {createBrowserRouter, RouterProvider, useParams} from "react-router-dom";
+import MainPage from "@/Page/MainPage.tsx";
+import LoginPage from "@/Page/LoginPage.tsx";
 import RegisterPage from "@/Page/RegisterPage.tsx";
 import ShopPage from "@/Page/ShopPage.tsx";
+import ErrorPage from "@/Page/ErrorPage.tsx";
 
-function ErrorPage() {
-    return null;
-}
-
-function LoginPage() {
-    return null;
-}
-
-const router = createBrowserRouter([
+    const router = createBrowserRouter([
     {
         path: "/",
         element: <MainPage />,
@@ -35,7 +29,6 @@ const router = createBrowserRouter([
     {
     }
 ]);
-
 
 export default function App() {
     return (
