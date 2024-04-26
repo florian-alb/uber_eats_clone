@@ -1,4 +1,4 @@
-import {createBrowserRouter, RouterProvider, useParams} from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import MainPage from "@/Page/MainPage.tsx";
 import LoginPage from "@/Page/LoginPage.tsx";
 import RegisterPage from "@/Page/RegisterPage.tsx";
