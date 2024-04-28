@@ -6,6 +6,8 @@ import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/compon
 import {Input} from "@/components/ui/input.tsx";
 import {useForm} from "react-hook-form";
 import {Button} from "@/components/ui/button.tsx";
+import NavbarAuth from "@/components/NavbarAuth.tsx";
+import {Link} from "react-router-dom";
 
 export default function LoginForm() {
 
@@ -28,7 +30,9 @@ export default function LoginForm() {
     }
 
     return (
-        <div className="w-full flex justify-center flex-col items-center">
+        <>
+        <NavbarAuth />
+        <div className="h-full flex justify-center flex-col items-center">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)}
                       className="flex flex-col gap-4 px-5 rounded-xl max-w-md w-full">
@@ -39,8 +43,9 @@ export default function LoginForm() {
                             return (
                                 <FormItem>
                                     <FormLabel>Email address</FormLabel>
-                                    <FormControl className="rounded border-none bg-gray-300">
+                                    <FormControl className="rounded">
                                         <Input
+                                            placeholder="Email"
                                             type={"email"}
                                             {...field}
                                         />
@@ -58,8 +63,9 @@ export default function LoginForm() {
                             return (
                                 <FormItem>
                                     <FormLabel>Password</FormLabel>
-                                    <FormControl className="rounded border-none bg-gray-300">
+                                    <FormControl className="rounded">
                                         <Input
+                                            placeholder="Password"
                                             type={"password"}
                                             {...field}
                                         />
@@ -73,7 +79,9 @@ export default function LoginForm() {
                             className="bg-ub-dark text-white rounded-md hover:bg-gray-800 mt-5">Continuer</Button>
                 </form>
             </Form>
-            <Button className="pt-10">Créer un compte</Button>
+            <Button asChild className="pt-10"><Link to='/register'>Créer un compte</Link></Button>
         </div>
+        </>
     )
 }
+

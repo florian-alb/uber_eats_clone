@@ -5,13 +5,21 @@ import * as z from "zod";
 import {Form, FormField} from "@/components/ui/form";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import NavbarAuth from "@/components/NavbarAuth.tsx";
+import {Link} from "react-router-dom";
 
 export default function RegisterPage() {
     const formSchema = z.object({
         email: z.string().email(),
         password: z.string().min(8),
         confirmPassword: z.string()
-    });
+    }).refine(
+        data => data.password === data.confirmPassword,
+        {
+            message: "Passwords do not match",
+            path: ["confirmPassword"]
+        }
+    );
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -25,7 +33,9 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="w-full flex justify-center flex-col items-center">
+        <>
+        <NavbarAuth />
+        <div className="size-full flex justify-center flex-col items-center">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)}
                       className="flex flex-col gap-4 px-10 rounded-xl max-w-md w-full">
@@ -91,7 +101,8 @@ export default function RegisterPage() {
                     <Button type="submit" className="bg-ub-dark mt-5 text-white rounded p-2 hover:bg-gray-700   ">Continuer</Button>
                 </form>
             </Form>
-            <Button className="pt-10">Déjà un compte ?</Button>
+            <Button asChild className="pt-10"><Link to='/login'>Créer un compte</Link></Button>
         </div>
+        </>
     )
 }
