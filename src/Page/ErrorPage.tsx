@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import NavbarAuth from "@/components/NavbarAuth.tsx";
+=======
+import NavbarAuth from "@/components/noLib/NavbarAuth.tsx";
+>>>>>>> e4149666d9a80eeeeddb865ec686770ec087497f
 import {Button} from "@/components/ui/button.tsx";
 import {Link} from "react-router-dom";
 
