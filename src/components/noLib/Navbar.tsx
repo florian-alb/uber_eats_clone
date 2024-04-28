@@ -25,19 +25,9 @@ import {Link} from "react-router-dom";
 export default function Navbar() {
     const [haveItems, setItems] = useState(false)
 
-
     function cartContent() {
-        if (!haveItems) {
-            return (
-                <div className="text-center text-gray-500">Votre panier est vide !</div>
-            )
-        }
-        setItems(true)
-        return (
-            <div className="text-center text-gray-500">Votre panier est REMPLLIIIIII!</div>
-        )
-    }
 
+    }
 
     return (
         <div className="w-full h-16 flex items-center justify-between px-10 py-5 text-2xl fixed z-20 bg-white">

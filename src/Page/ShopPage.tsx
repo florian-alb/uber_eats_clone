@@ -1,7 +1,7 @@
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel.tsx";
 import {useEffect, useState} from "react";
 import Navbar from "@/components/noLib/Navbar.tsx";
-import ProductCard from "@/components/noLib/ProductCard.tsx";
+import ProductCard, {Product} from "@/components/noLib/ProductCard.tsx";
 import ProductCardLong from "@/components/noLib/ProductCardLong.tsx";
 import {Icons} from "@/Page/MainPage.tsx";
 import {useParams} from "react-router-dom";
@@ -13,23 +13,24 @@ type Category = {
     image: string
 }
 
-type products = {
-    name: string
-    description: string
-    price: number
-    image: string
-}
-
 type Shop = {
     name: string,
     id: string
     image: string,
     Category: Category
-    products: products[]
+    products: Product[]
 }
 
 
 export default function ShopPage() {
+
+    function addToCart(product : Product){
+        if (localStorage.getItem("cart") === null) localStorage.setItem("cart", JSON.stringify([] as Product[]))
+        const cart = JSON.parse(localStorage.getItem("cart") as string)
+        cart.push(product)
+        localStorage.setItem("cart", JSON.stringify(cart))
+    }
+
 
     const shopID = useParams()
     console.log(shopID)
@@ -86,7 +87,7 @@ export default function ShopPage() {
                         </div>
                         <CarouselContent key={"carousel"}>
                             {shopInfo.products.map((product, index) => (
-                                <CarouselItem className="basis-56"><ProductCard product={product} key={index}></ProductCard></CarouselItem>
+                                <CarouselItem className="basis-56"><ProductCard addToCart={() => addToCart(product)} product={product} key={index}></ProductCard></CarouselItem>
                             ))}
                         </CarouselContent>
                     </Carousel>
@@ -94,7 +95,7 @@ export default function ShopPage() {
                         <div className="font-medium text-2xl mt-24">Tous les articles</div>
                         <div className="flex flex-wrap gap-10 min-w-96">
                             {shopInfo.products.map((product, index) => (
-                                <ProductCardLong product={product} key={index}></ProductCardLong>
+                                <ProductCardLong addToCart={() => addToCart(product)} product={product} key={index}></ProductCardLong>
                             ))}
                         </div>
                     </div>

@@ -9,7 +9,8 @@ import {
 import {Button} from "@/components/ui/button.tsx";
 
 
-type Product = {
+export type Product = {
+    id: string
     name: string
     description: string
     price: number
@@ -17,11 +18,7 @@ type Product = {
 }
 
 
-export default function ProductCard({product}: { product: Product }) {
-    function handleCommand() {
-        console.log("Commanded")
-    }
-
+export default function ProductCard({product, addToCart}: { product: Product, addToCart: () => void}) {
     return (
         <Dialog>
             <DialogTrigger>
@@ -42,7 +39,7 @@ export default function ProductCard({product}: { product: Product }) {
                         <DialogTitle className="text-4xl">{product.name ? product.name : "No name found"}</DialogTitle>
                         <div className="text-gray-700 text-lg font-bold">{product.price ? (product.price) + "$" : "No Price Found"}</div>
                         <DialogDescription className="text-base">{product.description ? product.description : "No Description found"}</DialogDescription>
-                        <Button type='submit' onClick={handleCommand} className="bg-ub-dark px-10 py-7 w-full text-white rounded-xl hover:bg-gray-800 text-lg">En ajouter 1 à la commande  •  {product.price}$</Button>
+                        <Button type='submit' onClick={() => addToCart()} className="bg-ub-dark px-10 py-7 w-full text-white rounded-xl hover:bg-gray-800 text-lg">En ajouter 1 à la commande  •  {product.price}$</Button>
                     </DialogHeader>
                 </div>
             </DialogContent>

@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import ShopCard from "@/components/noLib/ShopCard.tsx";
+import {Product} from "@/components/noLib/ProductCard.tsx";
 
 export type cardShop = {
     name: string

@@ -9,16 +9,11 @@ import {
 } from "@/components/ui/dialog.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Plus} from "lucide-react";
+import {Product} from "@/components/noLib/ProductCard.tsx";
 
 
-type Product = {
-    name: string
-    description: string
-    price: number
-    image: string
-}
+export default function ProductCardLong({product, addToCart} : {product:Product, addToCart: () => void}) {
 
-export default function ProductCardLong({product} : {product:Product}) {
     return (
         <Dialog>
             <DialogTrigger className="w-5/12 max-w-3xl flex justify-between min-w-92 border-gray-200 border rounded-xl">
@@ -38,11 +33,11 @@ export default function ProductCardLong({product} : {product:Product}) {
                 <div className="flex">
                     <img src={product.image ? product.image : "/src/assets/svg/food0.jpeg"} alt={product.name}
                          className="w-1/2 h-1/2 object-cover"/>
-                    <DialogHeader className="ml-4 flex gap-1">
+                    <DialogHeader className="ml-4 w-full flex gap-1">
                         <DialogTitle className="text-4xl">{product.name ? product.name : "No name found"}</DialogTitle>
                         <div className="text-gray-700 text-lg font-bold">{product.price ? (product.price) + "$" : "No Price Found"}</div>
                         <DialogDescription className="text-base">{product.description ? product.description : "No Description found"}</DialogDescription>
-                        <Button type='submit' className="bg-ub-dark px-10 py-7 w-full text-white rounded-xl hover:bg-gray-800 text-lg">En ajouter 1 à la commande  •  {product.price}$</Button>
+                        <Button type='submit' className="bg-ub-dark px-10 py-7 w-full text-white rounded-xl hover:bg-gray-800 text-lg" onClick={() => addToCart()}>En ajouter 1 à la commande  •  {product.price}$</Button>
                     </DialogHeader>
                 </div>
             </DialogContent>
