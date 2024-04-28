@@ -8,6 +8,7 @@ export const Icons = {
     spinner: Loader2,
 };
 
+
 export default function MainPage() {
 
     type cardShop = {
