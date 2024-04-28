@@ -45,12 +45,6 @@ export default function MainPage() {
         return cardList
     }
 
-    if (!cardData) {
-        return (<div className="flex w-full h-full justify-center flex-col items-center">
-            <h1 className="text-4xl font-bold">Welcome To Uber Eat</h1>
-            <Icons.spinner className="h-24 w-24 stroke animate-spin"/>
-        </div>)
-    }
     return (
         <>
             <Suspense fallback={

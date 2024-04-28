@@ -5,11 +5,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-<<<<<<< HEAD:src/components/ProductCard.tsx
 } from "@/components/ui/dialog.tsx"
-=======
-} from "@/components/ui/dialog"
->>>>>>> e4149666d9a80eeeeddb865ec686770ec087497f:src/components/noLib/ProductCard.tsx
 import {Button} from "@/components/ui/button.tsx";
 
 
