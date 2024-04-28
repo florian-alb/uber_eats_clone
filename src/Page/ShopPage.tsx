@@ -32,10 +32,7 @@ type Shop = {
 export default function ShopPage() {
 
     const shopID = useParams()
-<<<<<<< HEAD
-=======
     console.log(shopID)
->>>>>>> e4149666d9a80eeeeddb865ec686770ec087497f
     const [shopInfo, setShopInfo] = useState<Shop | undefined>(undefined)
 
     useEffect(() => {
@@ -71,11 +68,7 @@ export default function ShopPage() {
                      className="w-full h-72 object-cover rounded-xl"/>
                 <div className="mt-5">
                     <h1 className="text-3xl font-bold">{shopInfo.name ? shopInfo.name : ""}</h1>
-<<<<<<< HEAD
-                    <p className="text-gray-500">{shopInfo.Category?.name ? shopInfo.Category.name : ""}</p>
-=======
                     <p className="text-gray-500">{shopInfo.Category.name ? shopInfo.Category.name : ""}</p>
->>>>>>> e4149666d9a80eeeeddb865ec686770ec087497f
                 </div>
             </div>
             <div className="h-screen size-full px-9 pt-20 min-w-screen m-auto flex">
