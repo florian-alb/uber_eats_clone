@@ -5,7 +5,8 @@ import * as z from "zod";
 import {Form, FormField} from "@/components/ui/form";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import NavbarAuth from "@/components/noLib/NavbarAuth.tsx";
+import NavbarAuth from "@/components/NavbarAuth.tsx";
+import {Link} from "react-router-dom";
 
 export default function RegisterPage() {
     const formSchema = z.object({
@@ -100,7 +101,7 @@ export default function RegisterPage() {
                     <Button type="submit" className="bg-ub-dark mt-5 text-white rounded p-2 hover:bg-gray-700   ">Continuer</Button>
                 </form>
             </Form>
-            <Button className="pt-10">Déjà un compte ?</Button>
+            <Button asChild className="pt-10"><Link to='/login'>Créer un compte</Link></Button>
         </div>
         </>
     )

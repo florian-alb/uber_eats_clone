@@ -1,6 +1,6 @@
-import NavbarAuth from "@/components/noLib/NavbarAuth.tsx";
-import {Button} from "@/components/ui/button.tsx";
+import NavbarAuth from "@/components/NavbarAuth.tsx";
 import {Link} from "react-router-dom";
+import {Button} from "@/components/ui/button.tsx";
 
 export default function ErrorPage() {
     return (

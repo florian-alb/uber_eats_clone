@@ -4,6 +4,7 @@ import LoginPage from "@/Page/LoginPage.tsx";
 import RegisterPage from "@/Page/RegisterPage.tsx";
 import ShopPage from "@/Page/ShopPage.tsx";
 import ErrorPage from "@/Page/ErrorPage.tsx";
+import DashBoardPage from "@/Page/DashBoardPage.tsx";
 
     const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ import ErrorPage from "@/Page/ErrorPage.tsx";
         element: <ShopPage />,
         errorElement: <ErrorPage />
     },
+        {
+            path: "/dashboard",
+            element: <DashBoardPage />
+        },
     {
     }
 ]);

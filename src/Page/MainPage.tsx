@@ -1,7 +1,7 @@
-import ShopCard from "@/components/noLib/ShopCard.tsx";
+import ShopCard from "@/components/ShopCard.tsx";
 import {lazy, Suspense, useEffect, useState} from "react";
 
-const Navbar = lazy(() => import("@/components/noLib/Navbar.tsx"));
+const Navbar = lazy(() => import("@/components/Navbar.tsx"));
 import {Loader2} from 'lucide-react';
 
 export const Icons = {
@@ -21,7 +21,7 @@ export default function MainPage() {
     const [cardData, setCardData] = useState([] as cardShop[])
 
     useEffect(() => {
-        fetch("http://localhost:8080/shop/")
+        fetch(`http://localhost:8080/shop/`)
             .then(res => res.json())
             .then(({data}) => {
                 setCardData(data)
