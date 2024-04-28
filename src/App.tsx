@@ -5,28 +5,31 @@ import RegisterPage from "@/Page/RegisterPage.tsx";
 import ShopPage from "@/Page/ShopPage.tsx";
 import ErrorPage from "@/Page/ErrorPage.tsx";
 
-    const router = createBrowserRouter([
+const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainPage />,
-        errorElement: <ErrorPage />
+        element: <MainPage/>,
+        errorElement: <ErrorPage/>
+    },
+    {
+        path: "/category/:categoryId",
+        element: <MainPage/>,
+        errorElement: <ErrorPage/>
     },
     {
         path: "/login",
-        element: <LoginPage />,
-        errorElement: <ErrorPage />
+        element: <LoginPage/>,
+        errorElement: <ErrorPage/>
     },
     {
         path: "/register",
-        element: <RegisterPage />,
-        errorElement: <ErrorPage />
+        element: <RegisterPage/>,
+        errorElement: <ErrorPage/>
     },
     {
         path: "/shop/:id",
-        element: <ShopPage />,
-        errorElement: <ErrorPage />
-    },
-    {
+        element: <ShopPage/>,
+        errorElement: <ErrorPage/>
     }
 ]);
 
