@@ -83,7 +83,7 @@ export default function ShopPage() {
                             <CarouselPrevious />
                             <CarouselNext />
                         </div>
-                        <CarouselContent key={"carousel"}>
+                        <CarouselContent>
                             {shopInfo.products.map((product, index) => (
                                 <CarouselItem className="basis-56"><ProductCard product={product} key={index}></ProductCard></CarouselItem>
                             ))}
