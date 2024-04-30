@@ -42,8 +42,6 @@ export default function Categories(): JSX.Element {
                         ))
                     }
                 </CarouselContent>
-                <CarouselPrevious/>
-                <CarouselNext/>
             </Carousel>
         </div>
     )

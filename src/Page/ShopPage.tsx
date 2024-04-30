@@ -39,12 +39,21 @@ export default function ShopPage() {
     function addToCart(product: Product) {
 
         if (cart.length > 0) {
-            console.log(cart[0].id === product.id)
+            console.log(cart[0].id, product.id)
             if (product.id != cart[0].id) {
                 alert("Vous ne pouvez pas commander des produits de deux restaurants différents")
                 return
             }
         }
+        for (let i = 0; i < cart.length ; i++) {
+            if (cart[i].id === product.id) {
+                const newCart = [...cart]
+                newCart[i].quantity += 1
+                setCart(newCart)
+                return
+            }
+        }
+        product.quantity = 1
         setCart([...cart, product] as Item[])
     }
 
@@ -66,6 +75,7 @@ export default function ShopPage() {
                 setShopInfo(data)
             })
     }
+
     if (!shopInfo) return (
         <div className="flex w-full h-full justify-center flex-col items-center">
             <Icons.spinner className="h-24 w-24 stroke-1 text-ub-green animate-spin"/>
@@ -74,7 +84,7 @@ export default function ShopPage() {
 
     return (
         <>
-            <Navbar/>
+            <Navbar updatedCart={cart}/>
             <div className="px-9 pt-20 min-w-screen m-auto h-auto">
                 <img
                     src={shopInfo.image ? "https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg" : "https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg"}

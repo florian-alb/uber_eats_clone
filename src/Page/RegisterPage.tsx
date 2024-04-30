@@ -1,7 +1,11 @@
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import * as z from "zod";
-
+import NavbarAuth from '/src/components/noLib/NavbarAuth.tsx'
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
+import {Input} from "@/components/ui/input.tsx";
+import {Button} from "@/components/ui/button.tsx";
+import {Link} from "react-router-dom";
 export default function RegisterPage() {
     const formSchema = z.object({
         email: z.string().email(),
@@ -95,7 +99,8 @@ export default function RegisterPage() {
                     <Button type="submit" className="bg-ub-dark mt-5 text-white rounded p-2 hover:bg-gray-700   ">Continuer</Button>
                 </form>
             </Form>
-            <Button className="pt-10">Déjà un compte ?</Button>
+
+            <Button asChild className="pt-10"><Link to={"/login"}>Déjà un compte ?</Link></Button>
         </div>
         </>
     )

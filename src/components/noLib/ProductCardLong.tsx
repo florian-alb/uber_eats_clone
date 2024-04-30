@@ -20,7 +20,7 @@ export default function ProductCardLong({product, addToCart} : {product:Product,
                 <div className="flex flex-col text-start my-2 ml-5">
                     <CardTitle className="text-lg">{product.name}</CardTitle>
                     <p className="text-gray-800 text-sm">{product.price} $</p>
-                    <p className="text-sm text-gray-500">{product.description ? product.description : "No description included !"}</p>
+                    <p className="text-sm text-gray-500">{product.description ? product.description.substring(0,96): "No description Found"}...`</p>
                 </div>
                 <div className="relative">
                     <img src={product.image ? product.image : "/src/assets/svg/food0.jpeg"} alt="No Picture Found" className="max-w-44 object-contain rounded-r-xl"/>

@@ -36,7 +36,7 @@ export default function Shops(): JSX.Element {
         )
     }
     return (
-        <>
+        <div className="flex flex-wrap gap-4 gap-y-32">
             {
                 cardData.map(card => {
                     return (
@@ -48,6 +48,6 @@ export default function Shops(): JSX.Element {
                         />
                     )
                 })}
-        </>
+        </div>
     )
 }

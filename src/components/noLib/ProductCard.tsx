@@ -1,5 +1,5 @@
 import {
-    Dialog,
+    Dialog, DialogClose,
     DialogContent,
     DialogDescription,
     DialogHeader,
@@ -10,11 +10,15 @@ import {Button} from "@/components/ui/button.tsx";
 
 
 export type Product = {
-    id: string
-    name: string
-    description: string
-    price: number
-    image: string
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    image: string | null;
+    menuId: string | null;
+    orderId: string | null;
+    shopId: string;
+    quantity: number;
 }
 
 
@@ -39,7 +43,9 @@ export default function ProductCard({product, addToCart}: { product: Product, ad
                         <DialogTitle className="text-4xl">{product.name ? product.name : "No name found"}</DialogTitle>
                         <div className="text-gray-700 text-lg font-bold">{product.price ? (product.price) + "$" : "No Price Found"}</div>
                         <DialogDescription className="text-base">{product.description ? product.description : "No Description found"}</DialogDescription>
-                        <Button type='submit' onClick={() => addToCart()} className="bg-ub-dark px-10 py-7 w-full text-white rounded-xl hover:bg-gray-800 text-lg">En ajouter 1 à la commande  •  {product.price}$</Button>
+                        <DialogClose asChild>
+                            <Button type='submit' onClick={() => addToCart()} className="bg-ub-dark px-10 py-7 w-full text-white rounded-xl hover:bg-gray-800 text-lg">En ajouter 1 à la commande  •  {product.price}$</Button>
+                        </DialogClose>
                     </DialogHeader>
                 </div>
             </DialogContent>

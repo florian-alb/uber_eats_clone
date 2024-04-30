@@ -18,7 +18,7 @@ export default function MainPage(): JSX.Element {
                     <Icons.spinner className="h-24 w-24 stroke animate-spin"/>
                 </div>
             }>
-                <Navbar/>
+            <Navbar/>
             </Suspense>
             <div className="flex justify-center">
                 <div className=" w-3/4 h-full gap-4 mt-20 flex flex-wrap justify-center">
