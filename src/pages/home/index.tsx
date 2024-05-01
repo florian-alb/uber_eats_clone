@@ -1,15 +1,15 @@
 import {lazy, Suspense} from "react";
 
-const Navbar = lazy(() => import("@/components/noLib/Navbar.tsx"));
+const Navbar = lazy(() => import("@/components/Navbar.tsx"));
 import {Loader2} from 'lucide-react';
-import Categories from "@/components/layout/Categories.tsx";
-import Shops from "@/components/layout/Shops.tsx";
+import Categories from "@/pages/home/components/Categories.tsx";
+import Shops from "@/pages/shop/components/Shops.tsx";
 
 export const Icons = {
     spinner: Loader2,
 };
 
-export default function MainPage(): JSX.Element {
+export default function Home(): JSX.Element {
     return (
         <>
             <Suspense fallback={

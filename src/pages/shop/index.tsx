@@ -1,9 +1,9 @@
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel.tsx";
 import {useEffect, useState} from "react";
-import Navbar from "@/components/noLib/Navbar.tsx";
-import ProductCard from "@/components/noLib/ProductCard.tsx";
-import ProductCardLong from "@/components/noLib/ProductCardLong.tsx";
-import {Icons} from "@/Page/MainPage.tsx";
+import Navbar from "@/components/Navbar.tsx";
+import ProductCard from "@/components/ProductCard.tsx";
+import ProductCardLong from "@/components/ProductCardLong.tsx";
+import {Icons} from "@/pages/home";
 import {useParams} from "react-router-dom";
 
 
@@ -29,7 +29,7 @@ type Shop = {
 }
 
 
-export default function ShopPage() {
+export default function Shop() {
 
     const shopID = useParams()
     console.log(shopID)

@@ -4,7 +4,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel.tsx"
-import CategoryItem from "@/components/layout/CategoryItem.tsx";
+import CategoryItem from "@/pages/home/components/CategoryItem.tsx";
 import {useEffect, useState} from "react";
 
 export type Category = {

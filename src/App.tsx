@@ -1,34 +1,34 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import MainPage from "@/Page/MainPage.tsx";
-import LoginPage from "@/Page/LoginPage.tsx";
-import RegisterPage from "@/Page/RegisterPage.tsx";
-import ShopPage from "@/Page/ShopPage.tsx";
-import ErrorPage from "@/Page/ErrorPage.tsx";
+import ErrorPage from "@/pages/errors/ErrorPage.tsx";
+import {Login} from "@/pages/auth/Login.tsx";
+import Register from "@/pages/auth/Register.tsx";
+import Home from "@/pages/home";
+import Shop from "@/pages/shop";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainPage/>,
+        element: <Home/>,
         errorElement: <ErrorPage/>
     },
     {
         path: "/category/:categoryId",
-        element: <MainPage/>,
+        element: <Home/>,
         errorElement: <ErrorPage/>
     },
     {
         path: "/login",
-        element: <LoginPage/>,
+        element: <Login/>,
         errorElement: <ErrorPage/>
     },
     {
         path: "/register",
-        element: <RegisterPage/>,
+        element: <Register/>,
         errorElement: <ErrorPage/>
     },
     {
         path: "/shop/:id",
-        element: <ShopPage/>,
+        element: <Shop/>,
         errorElement: <ErrorPage/>
     }
 ]);
