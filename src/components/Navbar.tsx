@@ -21,10 +21,11 @@ import {
 } from "@/components/ui/popover.tsx"
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import {useAuth} from "@/middlewares/AuthProvider.tsx";
 
 export default function Navbar() {
     const [haveItems, setItems] = useState(false)
-
+    const isLoggedIn = false// useAuth() TODO: fix ça
 
     function cartContent() {
         if (!haveItems) {
@@ -38,6 +39,15 @@ export default function Navbar() {
         )
     }
 
+    // function logout() {
+    //     fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`,
+    //         {
+    //             method: 'get',
+    //             credentials: 'include' // This is necessary for cookies to be sent and received
+    //         }
+    //     ).catch(error => console.error("Error when logout ", error))
+    // }
+
 
     return (
         <div className="w-full h-16 flex items-center justify-between px-10 py-5 text-2xl fixed z-20 bg-white">
@@ -48,24 +58,27 @@ export default function Navbar() {
                              className="min-w-6 min-h-6 w-6 h-6 bold mt-1"/>
                     </SheetTrigger>
                     <SheetContent className="bg-white border-none pt-14" side={"left"}>
-                        <SheetHeader>
-                            <Button asChild
-                                className="rounded-xl min-h-14 py-5 mx-5 bg-black text-white text-lg hover:bg-gray-950 duration-200">
-                                <Link to={"/register"}>Inscription</Link>
-                            </Button>
-                            <Button asChild
-                                className="rounded-xl min-h-14 py-5 mx-5 bg-gray-200 text-lg duration-200 hover:bg-gray-300 mt-20">
-                                <Link to={"/login"}>Connexion</Link>
-                            </Button>
-                            <SheetDescription className="flex flex-col gap-5 py-5 font-medium">
-                                <a className="hover:underline" href="#">Créez un compte professionnel</a>
-                                <a className="hover:underline" href="#">Ajoutez votre restaurant</a>
-                                <a className="hover:underline" href="#">Devenez coursier-partenaire</a>
-                            </SheetDescription>
-                        </SheetHeader>
+                        {!isLoggedIn?.isLoggedIn ? (
+                            <SheetHeader>
+                                <Button asChild
+                                        className="rounded-xl min-h-14 py-5 mx-5 bg-black text-white text-lg hover:bg-gray-950 duration-200">
+                                    <Link to={"/register"}>Inscription</Link>
+                                </Button>
+                                <Button asChild
+                                        className="rounded-xl min-h-14 py-5 mx-5 bg-gray-200 text-lg duration-200 hover:bg-gray-300 mt-20">
+                                    <Link to={"/login"}>Connexion</Link>
+                                </Button>
+                                <SheetDescription className="flex flex-col gap-5 py-5 font-medium">
+                                    <a className="hover:underline" href="#">Créez un compte professionnel</a>
+                                    <a className="hover:underline" href="#">Ajoutez votre restaurant</a>
+                                    <a className="hover:underline" href="#">Devenez coursier-partenaire</a>
+                                </SheetDescription>
+                            </SheetHeader>
+                        ) : (<Button onClick={logout}>Logout</Button>)}
                     </SheetContent>
                 </Sheet>
-                <Link to="/" className="ml-5 tracking-tight font-medium">Uber<span className="ml-2 font-bold">Eats</span>
+                <Link to="/" className="ml-5 tracking-tight font-medium">Uber<span
+                    className="ml-2 font-bold">Eats</span>
                 </Link>
             </div>
             <ToggleGroup type={"single"} className="flex bg-gray-300 rounded-full px-5 mx-5 h-10">
@@ -100,14 +113,16 @@ export default function Navbar() {
                     <div className="text-center text-gray-500">{cartContent()}</div>
                 </PopoverContent>
             </Popover>
-            <div className="flex gap-2 mx-5">
-                <Button asChild className="rounded-full hover:bg-gray-200">
-                    <Link to={"/login"}>Connexion</Link>
-                </Button>
-                <Button asChild className="rounded-full bg-gray-100 hover:bg-gray-200">
-                    <Link to={"/register"}>Inscription</Link>
-                </Button>
-            </div>
+            {!isLoggedIn?.isLoggedIn &&
+                <div className="flex gap-2 mx-5">
+                    <Button asChild className="rounded-full hover:bg-gray-200">
+                        <Link to={"/login"}>Connexion</Link>
+                    </Button>
+                    <Button asChild className="rounded-full bg-gray-100 hover:bg-gray-200">
+                        <Link to={"/register"}>Inscription</Link>
+                    </Button>
+                </div>
+            }
         </div>
     )
 }

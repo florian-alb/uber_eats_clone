@@ -38,7 +38,6 @@ export function LoginForm() {
             }
         ).then(response => {
             if (response.status === 200) {
-                console.log("logged in")
                 window.location.href = "/"
             }
             return response.json();

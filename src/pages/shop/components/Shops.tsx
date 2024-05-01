@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import ShopCard from "@/components/ShopCard.tsx";
 
@@ -28,8 +28,8 @@ export default function Shops(): JSX.Element {
         return (
             <div className={"flex flex-col items-center justify-center"}>
                 <p>No shops in this category</p>
-                <a className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-10 px-4 py-2 rounded-full bg-green-500 hover:bg-green-500/50"
-                   href="/public">Back to homepage</a>
+                <Link className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-10 px-4 py-2 rounded-full bg-green-500 hover:bg-green-500/50"
+                   to="/">Back to homepage</Link>
             </div>
         )
     }
