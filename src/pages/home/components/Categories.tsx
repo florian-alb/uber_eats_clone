@@ -25,7 +25,7 @@ export default function Categories(): JSX.Element {
     }, [])
 
     return (
-        <div className={"container w-full flex justify-center my-2"}>
+        <div className={"container w-full flex justify-center mt-2 mb-6"}>
             <Carousel opts={{
                 align: "start",
                 slidesToScroll: "auto"

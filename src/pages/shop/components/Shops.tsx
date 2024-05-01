@@ -34,7 +34,7 @@ export default function Shops(): JSX.Element {
         )
     }
     return (
-        <>
+        <div className={"flex flex-wrap gap-4 container justify-center"}>
             {
                 cardData.map(card => {
                     return (
@@ -46,6 +46,6 @@ export default function Shops(): JSX.Element {
                         />
                     )
                 })}
-        </>
+        </div>
     )
 }

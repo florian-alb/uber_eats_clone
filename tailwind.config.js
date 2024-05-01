@@ -11,15 +11,8 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
-      rotate:{
-        '20': '20deg',
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -1,9 +1,9 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ErrorPage from "@/pages/errors/ErrorPage.tsx";
 import {Login} from "@/pages/auth/Login.tsx";
-import Register from "@/pages/auth/Register.tsx";
 import Home from "@/pages/home";
 import Shop from "@/pages/shop";
+import {Register} from "@/pages/auth/Register.tsx";
 
 const router = createBrowserRouter([
     {
