@@ -1,6 +1,6 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import ShopCard from "@/components/ShopCard.tsx";
+import ShopCard from "@/components/noLib/ShopCard.tsx";
 
 export type cardShop = {
     name: string
@@ -34,7 +34,7 @@ export default function Shops(): JSX.Element {
         )
     }
     return (
-        <div className={"flex flex-wrap gap-4 container justify-center"}>
+        <div className="flex flex-wrap gap-4 gap-y-32">
             {
                 cardData.map(card => {
                     return (
@@ -46,6 +46,6 @@ export default function Shops(): JSX.Element {
                         />
                     )
                 })}
-        </div>
+        </>
     )
 }

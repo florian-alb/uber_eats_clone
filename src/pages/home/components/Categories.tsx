@@ -2,7 +2,7 @@ import {
     Carousel,
     CarouselContent,
     CarouselNext,
-    CarouselPrevious,
+    CarouselPrevious
 } from "@/components/ui/carousel.tsx"
 import CategoryItem from "@/pages/home/components/CategoryItem.tsx";
 import {useEffect, useState} from "react";
@@ -29,10 +29,10 @@ export default function Categories(): JSX.Element {
             <Carousel opts={{
                 align: "start",
                 slidesToScroll: "auto"
-            }} className="w-full mx-20">
+            }} className="w-full">
                 <CarouselContent>
                     {
-                        categories.map((i:Category) => (
+                        categories && categories.map((i:Category) => (
                             <CategoryItem
                                 key={i.id}
                                 name={i.name}
@@ -42,8 +42,9 @@ export default function Categories(): JSX.Element {
                         ))
                     }
                 </CarouselContent>
-                <CarouselPrevious/>
-                <CarouselNext/>
+                <CarouselPrevious className="absolute start-0 bg-gray-100 border-none size-10 hover:bg-gray-300 active:bg-gray-100 "/>
+                <CarouselNext className="absolute end-0 bg-gray-100 border-none size-10 hover:bg-gray-300 active:bg-gray-100 "/>
+
             </Carousel>
         </div>
     )
