@@ -6,7 +6,7 @@ import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/compon
 import {Input} from "@/components/ui/input.tsx";
 import {useForm} from "react-hook-form";
 import {Button} from "@/components/ui/button.tsx";
-import NavbarAuth from "@/components/noLib/NavbarAuth.tsx";
+import NavbarAuth from "@/components/layout/NavbarAuth.tsx";
 
 export default function LoginForm() {
 

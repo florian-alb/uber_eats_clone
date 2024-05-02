@@ -1,6 +1,6 @@
 import {lazy, Suspense} from "react";
 
-const Navbar = lazy(() => import("@/components/noLib/Navbar.tsx"));
+const Navbar = lazy(() => import("@/components/layout/Navbar.tsx"));
 import {Loader2} from 'lucide-react';
 import Categories from "@/components/layout/Categories.tsx";
 import Shops from "@/components/layout/Shops.tsx";

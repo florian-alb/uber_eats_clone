@@ -1,8 +1,8 @@
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel.tsx";
 import {useEffect, useState} from "react";
-import Navbar, {Item} from "@/components/noLib/Navbar.tsx";
-import ProductCard, {Product} from "@/components/noLib/ProductCard.tsx";
-import ProductCardLong from "@/components/noLib/ProductCardLong.tsx";
+import Navbar, {Item} from "@/components/layout/Navbar.tsx";
+import ProductCard, {Product} from "@/components/layout/ProductCard.tsx";
+import ProductCardLong from "@/components/layout/ProductCardLong.tsx";
 import {Icons} from "@/Page/MainPage.tsx";
 import {useParams} from "react-router-dom";
 

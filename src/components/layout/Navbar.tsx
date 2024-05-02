@@ -4,7 +4,7 @@ import {
     SheetDescription,
     SheetHeader,
     SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet.tsx"
 import {Button} from "@/components/ui/button.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {CircleMinus, SearchIcon} from "lucide-react";
@@ -12,13 +12,13 @@ import {CircleMinus, SearchIcon} from "lucide-react";
 import {
     ToggleGroup,
     ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+} from "@/components/ui/toggle-group.tsx"
 
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover.tsx"
 import {Link} from "react-router-dom";
 
 //Utils Jotai

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Plus} from "lucide-react";
-import {Product} from "@/components/noLib/ProductCard.tsx";
+import {Product} from "@/components/layout/ProductCard.tsx";
 
 
 export default function ProductCardLong({product, addToCart} : {product:Product, addToCart: () => void}) {

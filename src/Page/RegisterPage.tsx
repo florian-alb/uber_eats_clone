@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import * as z from "zod";
-import NavbarAuth from '/src/components/noLib/NavbarAuth.tsx'
+import NavbarAuth from '/src/components/layout/NavbarAuth.tsx'
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
