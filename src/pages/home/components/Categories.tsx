@@ -43,7 +43,7 @@ export default function Categories(): JSX.Element {
                     }
                 </CarouselContent>
                 <CarouselPrevious className="absolute start-0 bg-gray-100 border-none size-10 hover:bg-gray-300 active:bg-gray-100 "/>
-                <CarouselNext className="absolute end-0 bg-gray-100 border-none size-10 hover:bg-gray-300 active:bg-gray-100 "/>
+                <CarouselNext className="absolute end-0 bg-gray-100/50 border-none size-10 hover:bg-gray-300 active:bg-gray-100 "/>
 
             </Carousel>
         </div>

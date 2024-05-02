@@ -42,10 +42,14 @@ export default function Navbar() {
     function logout() {
         fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`,
             {
-                method: 'get',
-                credentials: 'include' // This is necessary for cookies to be sent and received
+                method: 'POST',
+                credentials: 'include'
             }
-        ).catch(error => console.error("Error when logout ", error))
+        ).then(resp => {
+            if (resp.status === 200){
+                window.location.href="/login"
+            }
+        }).catch(error => console.error("Error when logout ", error))
     }
 
 
