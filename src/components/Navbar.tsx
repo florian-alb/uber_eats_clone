@@ -25,7 +25,7 @@ import {useAuth} from "@/middlewares/AuthProvider.tsx";
 
 export default function Navbar() {
     const [haveItems, setItems] = useState(false)
-    const isLoggedIn = false// useAuth() TODO: fix ça
+    const isLoggedIn = useAuth() //TODO: fix ça
 
     function cartContent() {
         if (!haveItems) {
@@ -39,14 +39,14 @@ export default function Navbar() {
         )
     }
 
-    // function logout() {
-    //     fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`,
-    //         {
-    //             method: 'get',
-    //             credentials: 'include' // This is necessary for cookies to be sent and received
-    //         }
-    //     ).catch(error => console.error("Error when logout ", error))
-    // }
+    function logout() {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`,
+            {
+                method: 'get',
+                credentials: 'include' // This is necessary for cookies to be sent and received
+            }
+        ).catch(error => console.error("Error when logout ", error))
+    }
 
 
     return (
