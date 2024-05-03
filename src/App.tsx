@@ -4,7 +4,11 @@ import {Login} from "@/pages/auth/Login.tsx";
 import Home from "@/pages/home";
 import Shop from "@/pages/shop";
 import {Register} from "@/pages/auth/Register.tsx";
-import {AuthProvider} from "@/middlewares/AuthProvider.tsx";
+
+
+//Auth Imports
+//import {AuthProvider} from "@/middlewares/AuthProvider.tsx";
+
 
 const router = createBrowserRouter([
     {
@@ -36,8 +40,8 @@ const router = createBrowserRouter([
 
 export default function App() {
     return (
-        <AuthProvider>
+        //<AuthProvider>
             <RouterProvider router={router}/>
-        </AuthProvider>
+        //</AuthProvider>
     )
 }
