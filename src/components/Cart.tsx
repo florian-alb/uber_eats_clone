@@ -10,17 +10,19 @@ import {atomWithStorage} from "jotai/utils";
 
 const localCart = atomWithStorage('cart', [] as Item[])
 
-export default function Cart() {
 
+
+export default function Cart() {
     const [items, setItems] = useAtom(localCart)
 
     // update the cart content without reloading the page
     useEffect(() => {
+        console.log("cart changed")
         const cart = localStorage.getItem('cart')
         if (cart) {
             setItems(JSON.parse(cart))
         }
-    }, [setItems])
+    }, [])
 
     function getTotalPrice(): string {
         let total = 0
