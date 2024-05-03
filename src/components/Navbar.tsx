@@ -30,6 +30,7 @@ export type Item = {
 export default function Navbar() {
 
     const isLoggedIn = useAuth()
+
     function logout() {
         fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`,
             {

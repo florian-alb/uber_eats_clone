@@ -9,15 +9,15 @@ import {useParams} from "react-router-dom";
 const Navbar = lazy(() => import("@/components/Navbar.tsx"));
 
 // Jotai Utilities
-import {atomWithStorage} from "jotai/utils";
 import {useAtom} from "jotai";
 import {Item} from "@/components/Navbar.tsx";
-
-
 type Category = {
     name: string
     image: string
 }
+
+//Cart Management
+import {cartAtom, shopNameAtom} from "@/components/Cart.tsx";
 
 type Shop = {
     name: string,
@@ -28,16 +28,16 @@ type Shop = {
 }
 
 //Retrieve localCart from the localStorage
-const localCart = atomWithStorage('cart', [] as Item[])
 
 export default function Shop() {
 
     //Cart Management
-    const [cart, setCart] = useAtom(localCart)
+    const [cart, setCart] = useAtom(cartAtom)
 
     // Shop Infos
     const shopID = useParams()
     const [shopInfo, setShopInfo] = useState<Shop | undefined>(undefined)
+
 
     function addToCart(product: Product) {
         if (cart.length > 0) {
@@ -57,7 +57,10 @@ export default function Shop() {
             }
         }
         product.quantity = 1
+
+        //update the State and the localStorage Accordingly
         setCart([...cart, product] as Item[])
+        localStorage.setItem('cart', JSON.stringify([...cart, product] as Item[]))
     }
 
     //Retrieve the shop ID from the URL
