@@ -38,7 +38,7 @@ export default function Navbar() {
             }
         ).catch(error => console.error("Error when logout ", error)
         ).then(resp => {
-            if (&& resp.status === 200){
+            if (resp.status === 200){
                 window.location.href="/login"
             }
         }).catch(error => console.error("Error when logout ", error))
