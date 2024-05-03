@@ -1,25 +1,21 @@
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel.tsx";
-import {useEffect, useState} from "react";
-import Navbar from "@/components/Navbar.tsx";
-import ProductCard from "@/components/ProductCard.tsx";
+import {lazy, useEffect, useState} from "react";
+import ProductCard, {Product} from "@/components/ProductCard.tsx";
 import ProductCardLong from "@/components/ProductCardLong.tsx";
 import {Icons} from "@/pages/home";
 import {useParams} from "react-router-dom";
 
+// Lazy Load
+const Navbar = lazy(() => import("@/components/Navbar.tsx"));
 
+// Jotai Utilities
 import {atomWithStorage} from "jotai/utils";
 import {useAtom} from "jotai";
+import {Item} from "@/components/Navbar.tsx";
 
 
 type Category = {
     name: string
-    image: string
-}
-
-type products = {
-    name: string
-    description: string
-    price: number
     image: string
 }
 
@@ -44,15 +40,15 @@ export default function Shop() {
     const [shopInfo, setShopInfo] = useState<Shop | undefined>(undefined)
 
     function addToCart(product: Product) {
-
         if (cart.length > 0) {
-            console.log(cart[0].id, product.id)
-            if (product.id != cart[0].id) {
+            if (product.shopId != cart[0].shopId) {
                 alert("Vous ne pouvez pas commander des produits de deux restaurants différents")
                 return
             }
         }
+
         for (let i = 0; i < cart.length ; i++) {
+            console.log(cart[i].id, product.id)
             if (cart[i].id === product.id) {
                 const newCart = [...cart]
                 newCart[i].quantity += 1
@@ -63,7 +59,6 @@ export default function Shop() {
         product.quantity = 1
         setCart([...cart, product] as Item[])
     }
-
 
     //Retrieve the shop ID from the URL
     useEffect(() => {
@@ -91,7 +86,7 @@ export default function Shop() {
 
     return (
         <>
-            <Navbar updatedCart={cart}/>
+            <Navbar />
             <div className="px-9 pt-20 min-w-screen m-auto h-auto">
                 <img
                     src={shopInfo.image ? "https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg" : "https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg"}
