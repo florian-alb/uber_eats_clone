@@ -6,12 +6,12 @@ import {Icons} from "@/pages/home";
 import {useParams} from "react-router-dom";
 
 // Lazy Load
-const Navbar = lazy(() => import("@/components/Navbar.tsx"));
+const Navbar = lazy(() => import("@/components/navbar/Navbar.tsx"));
 
 // Jotai Utilities
 import {atomWithStorage} from "jotai/utils";
 import {useAtom} from "jotai";
-import {Item} from "@/components/Navbar.tsx";
+import {Item} from "@/components/navbar/Navbar.tsx";
 
 
 type Category = {

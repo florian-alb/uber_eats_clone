@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {useAtom} from "jotai/index";
 import {useEffect} from "react";
 import {CircleMinus} from "lucide-react";
-import {Item} from "@/components/Navbar.tsx";
+import {Item} from "@/components/navbar/Navbar.tsx";
 import {atomWithStorage} from "jotai/utils";
 
 

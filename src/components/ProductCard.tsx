@@ -7,20 +7,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog.tsx"
 import {Button} from "@/components/ui/button.tsx";
-
-
-export type Product = {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    image: string | null;
-    menuId: string | null;
-    orderId: string | null;
-    shopId: string;
-    quantity: number;
-}
-
+import {Product} from "@/types/product.ts";
 
 export default function ProductCard({product, addToCart}: { product: Product, addToCart: () => void}) {
     return (

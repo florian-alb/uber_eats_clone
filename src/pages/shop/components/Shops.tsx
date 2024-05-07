@@ -1,24 +1,15 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import ShopCard from "@/components/ShopCard.tsx";
-
-export type cardShop = {
-    name: string
-    email: string
-    image: string
-    id: string
-}
+import {getShops} from "@/api/shop.ts";
+import {Shop} from "@/types/shop.ts";
 
 export default function Shops(): JSX.Element {
-    const [cardData, setCardData] = useState([] as cardShop[])
+    const [cardData, setCardData] = useState<Shop[]>()
     const {categoryId} = useParams();
 
     useEffect(() => {
-        fetch(categoryId ? `http://localhost:8080/shop/category/${categoryId}` : 'http://localhost:8080/shop')
-            .then(res => res.json())
-            .then(({data}) => {
-                setCardData(data)
-            })
+        getShops(categoryId).then(data => setCardData(data))
     }, [categoryId])
 
     if (!cardData) {
@@ -37,15 +28,8 @@ export default function Shops(): JSX.Element {
     return (
         <div className="flex flex-wrap gap-4 gap-y-32 w-full basis-3">
             {
-                cardData.map(card => {
-                    return (
-                        <ShopCard picture={card.image ? card.image : '/src/assets/svg/food0.jpeg'}
-                                  name={card.name ? card.name : "Null"}
-                                  category={card.email ? card.email : "Null"}
-                                  key={card.id}
-                                  uuid={card.id}
-                        />
-                    )
+                cardData?.map(card => {
+                    return (<ShopCard id={card.id} name={card.name} category={card.category} image={card.image} key={card.id}/>)
                 })
             }
         </div>

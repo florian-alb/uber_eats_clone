@@ -6,24 +6,15 @@ import {
 } from "@/components/ui/carousel.tsx"
 import CategoryItem from "@/pages/home/components/CategoryItem.tsx";
 import {useEffect, useState} from "react";
-
-export type Category = {
-    id: string,
-    name: string,
-    icon: string
-};
+import {Category} from "@/types/category.ts";
+import {getCategories} from "@/api/category.ts";
 
 export default function Categories(): JSX.Element {
-    const [categories, setCategory] = useState([] as Category[])
+    const [categories, setCategories] = useState<Category[]>()
 
     useEffect(() => {
-        fetch("http://localhost:8080/category/")
-            .then(res => res.json())
-            .then(({data}) => {
-                setCategory(data)
-            })
+        getCategories().then(c => setCategories(c))
     }, [])
-
     return (
         <div className={"container w-full flex justify-center mt-2 mb-6"}>
             <Carousel opts={{
@@ -31,8 +22,7 @@ export default function Categories(): JSX.Element {
                 slidesToScroll: "auto"
             }} className="w-full">
                 <CarouselContent>
-                    {
-                        categories && categories.map((i:Category) => (
+                    { categories && categories.map((i: Category) => (
                             <CategoryItem
                                 key={i.id}
                                 name={i.name}
@@ -42,8 +32,10 @@ export default function Categories(): JSX.Element {
                         ))
                     }
                 </CarouselContent>
-                <CarouselPrevious className="absolute start-0 bg-gray-100 border-none size-10 hover:bg-gray-300 active:bg-gray-100 "/>
-                <CarouselNext className="absolute end-0 bg-gray-100/50 border-none size-10 hover:bg-gray-300 active:bg-gray-100 "/>
+                <CarouselPrevious
+                    className="absolute start-0 bg-gray-100 border-none size-10 hover:bg-gray-300 active:bg-gray-100 "/>
+                <CarouselNext
+                    className="absolute end-0 bg-gray-100/50 border-none size-10 hover:bg-gray-300 active:bg-gray-100 "/>
 
             </Carousel>
         </div>
