@@ -20,9 +20,11 @@ import Cart from "@/components/Cart.tsx";
 export type Item = {
     id: string
     name: string
-    price: string
+    price: number
     quantity: number
     shopId: string
+    shopName: string
+    image: string
 }
 
 
@@ -30,7 +32,6 @@ export type Item = {
 export default function Navbar() {
 
     const isLoggedIn = useAuth()
-
     function logout() {
         fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`,
             {
@@ -39,7 +40,7 @@ export default function Navbar() {
             }
         ).catch(error => console.error("Error when logout ", error)
         ).then(resp => {
-            if (resp.status === 200){
+            if (resp && resp.status === 200){
                 window.location.href="/login"
             }
         }).catch(error => console.error("Error when logout ", error))

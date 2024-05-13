@@ -4,6 +4,7 @@ import {Login} from "@/pages/auth/Login.tsx";
 import Home from "@/pages/home";
 import Shop from "@/pages/shop";
 import {Register} from "@/pages/auth/Register.tsx";
+import Checkout from "@/pages/checkout";
 
 
 //Auth Imports
@@ -35,13 +36,16 @@ const router = createBrowserRouter([
         path: "/shop/:id",
         element: <Shop/>,
         errorElement: <ErrorPage/>
+    },
+    {
+        path: "/checkout/",
+        element: <Checkout />,
+        errorElement: <ErrorPage />
     }
 ]);
 
 export default function App() {
     return (
-        //<AuthProvider>
             <RouterProvider router={router}/>
-        //</AuthProvider>
     )
 }
