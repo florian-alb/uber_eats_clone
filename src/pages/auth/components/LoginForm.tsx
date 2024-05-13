@@ -73,21 +73,22 @@ export function LoginForm() {
                             <Controller
                                 name="email"
                                 control={control}
-                                rules={{required: true}}
+                                rules={{required: errorMessages.required_email}}
                                 render={({field}) => <Input id="email" placeholder="Email" {...field}/>}
                             />
                             <Label htmlFor="password">Mot de passe</Label>
                             <Controller
                                 name="password"
                                 control={control}
-                                rules={{required: true}}
+                                rules={{required: errorMessages.required_password}}
                                 render={({field}) => (
                                     <Input id="password" type="password" placeholder="Mot de passe" {...field}/>
                                 )}
                             />
                         </CardContent>
                         <CardFooter className={"flex flex-col"}>
-                            <Button type="submit" className="w-full bg-black text-white rounded hover:bg-black/80">Se Connecter</Button>
+                            <Button type="submit" className="w-full bg-black text-white rounded hover:bg-black/80">Se
+                                Connecter</Button>
                             <div className="mt-4 text-center text-sm">
                                 Pas encore de compte?{" "}
                                 <Link to="/register" className="underline">

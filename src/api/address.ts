@@ -1,9 +1,33 @@
 import axios from "axios";
-import {Address, MapboxAddressSuggestion} from "@/types/address.ts";
+import {Address, MapboxAddressConversion, MapboxAddressSuggestion} from "@/types/address.ts";
 import {axiosInstance} from "@/main.tsx";
+import {getUserById} from "@/api/user.ts";
 
-export async function addAddress(body: Address) {
-    return axiosInstance.post<Address>('address', body).then((res) => res.data);
+export async function addAddress(body: Address, userId?: string) {
+    console.log(body)
+    if (userId) {
+        const user = await getUserById(userId);
+        if (!user) {
+            throw new Error(`User with id ${userId} do not exist`)
+        }
+    }
+    body = {...body, userId: userId}
+    return axiosInstance.post<Address>(`address/${body.id}`, body).then((res) => res.data);
+}
+
+export async function convertAddress(position: GeolocationPosition): Promise<MapboxAddressConversion> {
+    return axios.get("https://api.mapbox.com/search/geocode/v6/reverse?", {
+        params: {
+            longitude: position.coords.longitude,
+            latitude: position.coords.latitude,
+            access_token: import.meta.env.VITE_MAPBOX_TOKEN
+        }
+    })
+        .then(response => response.data)
+        .catch(error => {
+            console.error('Error fetching Mapbox suggestions:', error);
+            throw error;
+        });
 }
 
 export async function mapboxSuggestions(searchTerm: string): Promise<MapboxAddressSuggestion> {

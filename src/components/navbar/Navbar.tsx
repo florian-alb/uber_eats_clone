@@ -3,7 +3,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Link} from "react-router-dom";
 import Cart from "@/components/Cart.tsx";
-import AddressField from "@/components/navbar/components/AddressField.tsx";
+import AddressField from "@/components/address/AddressField.tsx";
 import {useAuthStore} from "@/store/auth.ts";
 
 export type Item = {

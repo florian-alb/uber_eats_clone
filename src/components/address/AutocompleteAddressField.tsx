@@ -1,7 +1,7 @@
 import {Input} from "@/components/ui/input.tsx";
 import {MapPin} from "lucide-react";
 import {mapboxSuggestions} from "@/api/address.ts";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {AddressSuggestion} from "@/types/address.ts";
 import {useNavigate} from "react-router-dom";
 
@@ -23,19 +23,16 @@ export default function AutocompleteAddressField() {
             }
         }, 300);
 
-        console.log(addressSuggestions)
-
         return () => clearTimeout(timerId);
     }, [inputValue]);
 
-    function handleInputChange(e: any) {
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         e.preventDefault()
         setInputValue(e.target.value);
     }
 
     function editAddress(address: AddressSuggestion){
         navigate(`?address_line1=${address.address_line1}&place=${address.place}&postcode=${address.postcode}&country=${address.country}`)
-        console.log("click")
     }
 
     function AddressSuggestion(address: AddressSuggestion) {

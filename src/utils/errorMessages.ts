@@ -13,5 +13,9 @@ export const errorMessages = {
     invalid_credentials: 'Email ou mot de passe incorrect',
     empty_field: 'Ce champ ne peut pas être vide',
     empty_fields: 'Veuillez renseigner tous les champs',
-    user_already_exists: 'Cet utilisateur existe déja. Veuillez vous connecter'
+    user_already_exists: 'Cet utilisateur existe déja. Veuillez vous connecter',
+    required_address: 'Adresse requise',
+    required_postcode: 'Code postal requis',
+    required_city: 'Ville requise',
+    required_country: 'Pays requis',
 };

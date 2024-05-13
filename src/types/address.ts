@@ -1,6 +1,5 @@
 export type Address = {
-    id: string;
-    name: string;
+    id: string | undefined;
     address: string;
     userId: string | undefined
 }
@@ -13,5 +12,12 @@ export type AddressSuggestion = {
 }
 
 export type MapboxAddressSuggestion = {
-    suggestions : Array<AddressSuggestion>
+    suggestions: Array<AddressSuggestion>
+}
+
+export type MapboxAddressConversion = {
+    features: Array<{
+        properties:
+            { full_address: string }
+    }>
 }

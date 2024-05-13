@@ -2,25 +2,26 @@ import {Dialog, DialogTitle, DialogContent, DialogFooter, DialogHeader} from "@/
 import {useLocation, useNavigate} from "react-router-dom";
 import {Button} from "@/components/ui/button.tsx";
 import {useAuthStore} from "@/store/auth.ts";
-import AddressCard from "@/components/navbar/components/AddressCard.tsx";
+import AddressCard from "@/components/address/AddressCard.tsx";
 import {Address, AddressSuggestion} from "@/types/address.ts";
-import AutocompleteAddressField from "@/components/navbar/components/AutocompleteAddressField.tsx";
-import EditAddress from "@/components/EditAddress.tsx";
+import AutocompleteAddressField from "@/components/address/AutocompleteAddressField.tsx";
+import EditAddress from "@/components/address/EditAddress.tsx";
 import {useQuery} from "@/lib/utils.ts";
 import {useEffect, useState} from "react";
 
 function addressQuery() {
     const query = useQuery()
-    const [address, setAddress] = useState<AddressSuggestion>()
+    const [address, setAddress] = useState<AddressSuggestion & {id: string|null}>()
 
     useEffect(() => {
         const address_line1 = query.get("address_line1");
         const country = query.get("country");
         const place = query.get("place");
         const postcode = query.get("postcode");
+        const addressId = query.get("address_id");
 
         if (address_line1 && country && place && postcode) {
-            setAddress({address_line1: address_line1, country: country, place: place, postcode: postcode})
+            setAddress({address_line1: address_line1, country: country, place: place, postcode: postcode, id: addressId})
         } else {
             setAddress(undefined)
         }
@@ -29,7 +30,7 @@ function addressQuery() {
     return address
 }
 
-function NormalContent(props: {closeModal: ()=>void, address: string| null}){
+function NormalContent(props: { closeModal: () => void, address: string | null }) {
     const user = useAuthStore().user;
     const userAddresses = user?.addresses;
 
@@ -76,9 +77,7 @@ export default function AddressEditionModal(props: { address: string | null }) {
                     <DialogTitle className={"mb-3"}>Détails de la livraison</DialogTitle>
                 </DialogHeader>
 
-                {address ?
-                    <EditAddress address_line1={address.address_line1} country={address.country} place={address.place}
-                                 postcode={address.postcode}/> :
+                {address ? <EditAddress {...address}/> :
 
                     <NormalContent closeModal={closeModal} address={props.address}/>
 
