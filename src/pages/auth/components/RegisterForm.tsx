@@ -8,81 +8,131 @@ import {
 } from "@/components/ui/card.tsx"
 import {Input} from "@/components/ui/input.tsx"
 import {Label} from "@/components/ui/label.tsx"
-import {Link} from "react-router-dom";
-import {FormEvent, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {Controller, SubmitHandler, useForm} from "react-hook-form";
+import {RegisterUser} from "@/types/user.ts";
+import {errorMessages} from "@/utils/errorMessages.ts";
+import {patterns} from "@/utils/patterns.ts";
+import {register} from "@/api/auth.ts";
+import {toast} from "@/components/ui/use-toast.ts";
 
 export function RegisterForm() {
-    const [errorText, setErrorText] = useState(null)
+    const navigate = useNavigate()
 
-    function handleSubmit(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-        const form = e.currentTarget
-        const formData = new FormData(form);
+    const {
+        control,
+        handleSubmit,
+        formState: {errors},
+    } = useForm({
+        defaultValues: {
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+        },
+    });
 
-        console.log("formData", Object.fromEntries(formData.entries()));
-
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/user/`,
-            {
-                method: 'POST',
-                body: formData,
-                credentials: 'include'
-            }
-        ).then(response => {
-            if (response.status === 201){
-                window.location.href = "/login?status=user-created"
-            }
-            return response.json();
-        }).then(data => {
-            setErrorText(data.message);
-        }).catch(error => {
-            console.error("Error signing up in:", error);
-        });
-    }
+    const onSubmit: SubmitHandler<RegisterUser> = async data => {
+        await register(data)
+            .then(() => navigate("/login?status=user-created"))
+            .catch(
+                (error) => {
+                    console.error(error);
+                    toast({
+                        variant: "destructive",
+                        title: "Erreur",
+                        description: errorMessages.user_already_exists
+                    })
+                }
+            )
+    };
 
     return (
         <Card className="mx-auto max-w-sm rounded">
             <CardHeader>
-                <CardTitle className="text-xl">Sign Up</CardTitle>
+                <CardTitle className="text-xl">Création de compte</CardTitle>
                 <CardDescription>
-                    Enter your information to create an account
+                    Saisissez vos informations pour créer un compte
                 </CardDescription>
             </CardHeader>
-            <form onSubmit={handleSubmit} method="POST">
+            <form onSubmit={handleSubmit(onSubmit)} method="POST">
                 <CardContent>
                     <div className="grid gap-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
-                                <Label htmlFor="first-name">First name</Label>
-                                <Input id="first-name" name="firstName" placeholder="Ad" required/>
+                                <Label htmlFor="firstName">Prénom</Label>
+                                <Controller
+                                    name="firstName"
+                                    control={control}
+                                    rules={{
+                                        required: errorMessages.first_name_pattern,
+                                        pattern: {value: patterns.first_name, message: errorMessages.first_name_pattern}
+                                    }}
+                                    render={({field}) =>
+                                        <Input type="text" id="first-name" placeholder="Adrien" {...field} />}
+                                />
+                                {errors.firstName && (
+                                    <span className="text-red-500 text-xs">{errors.firstName.message}</span>
+                                )}
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="last-name">Last name</Label>
-                                <Input id="last-name" name="lastName" placeholder="Laurent" required/>
+                                <Label htmlFor="last-name">Nom</Label>
+                                <Controller
+                                    name="lastName"
+                                    control={control}
+                                    rules={{
+                                        required: errorMessages.required_last_name,
+                                        pattern: {value: patterns.last_name, message: errorMessages.last_name_pattern}
+                                    }}
+                                    render={({field}) =>
+                                        <Input type="text" id="last-name" placeholder="Laurent" {...field} />}
+                                />
+                                {errors.lastName && (
+                                    <span className="text-red-500 text-xs">{errors.lastName.message}</span>
+                                )}
                             </div>
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
-                            <Input
-                                id="email"
+                            <Controller
                                 name="email"
-                                type="email"
-                                placeholder="email@de-malade.com"
-                                required
+                                control={control}
+                                rules={{
+                                    required: errorMessages.required_email,
+                                    pattern: {value: patterns.email, message: errorMessages.email_pattern}
+                                }}
+                                render={({field}) =>
+                                    <Input id="email" placeholder="email@de-malade.com" {...field} />}
                             />
+                            {errors.email && (
+                                <span className="text-red-500 text-xs">{errors.email.message}</span>
+                            )}
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="password">Password</Label>
-                            <Input id="password" name="password" type="password"/>
+                            <Controller
+                                name="password"
+                                control={control}
+                                rules={{
+                                    required: errorMessages.required_password,
+                                    minLength: {value: 8, message: errorMessages.password_length},
+                                    pattern: {value: patterns.password, message: errorMessages.password_pattern}
+                                }}
+                                render={({field}) =>
+                                    <Input type="password" id="password" {...field} />}
+                            />
+                            {errors.password && (
+                                <span className="text-red-500 text-xs">{errors.password.message}</span>
+                            )}
                         </div>
                         <Button type="submit" className="w-full">
-                            Create an account
+                            Créer un compte
                         </Button>
                     </div>
-                    {errorText && <p className={"text-sm text-red-400 my-2 text-center"}>{errorText}</p>}
                     <div className="mt-4 text-center text-sm">
-                        Already have an account?{" "}
+                        Déja un compte?{" "}
                         <Link to="/login" className="underline">
-                            Sign in
+                            Se connecter
                         </Link>
                     </div>
                 </CardContent>

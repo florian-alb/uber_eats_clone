@@ -1,4 +1,4 @@
-import NavbarAuth from "@/components/NavbarAuth.tsx";
+import NavbarAuth from "@/components/navbar/NavbarAuth.tsx";
 import {RegisterForm} from "@/pages/auth/components/RegisterForm.tsx";
 
 export function Register() {

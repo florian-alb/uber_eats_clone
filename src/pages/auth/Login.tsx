@@ -1,5 +1,5 @@
 import {LoginForm} from "@/pages/auth/components/LoginForm.tsx";
-import NavbarAuth from "@/components/NavbarAuth.tsx";
+import NavbarAuth from "@/components/navbar/NavbarAuth.tsx";
 
 export function Login() {
 

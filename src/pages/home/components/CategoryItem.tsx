@@ -1,7 +1,7 @@
 import {CarouselItem} from "@/components/ui/carousel.tsx";
-import {Category} from "@/pages/home/components/Categories.tsx";
 import {useNavigate, useParams} from "react-router-dom";
 import {useState} from "react";
+import {Category} from "@/types/category.ts";
 
 export default function CategoryItem(props: Category): JSX.Element {
     const [isCategoryToggle, setIsCategoryToggle] = useState(false)

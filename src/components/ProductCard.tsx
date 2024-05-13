@@ -18,7 +18,6 @@ export type Product = {
     menuId: string | null;
     orderId: string | null;
     shopId: string;
-    shopName: string;
     quantity: number;
 }
 
