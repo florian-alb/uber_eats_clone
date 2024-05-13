@@ -9,11 +9,13 @@ import {jwtDecode, JwtPayload} from "jwt-decode";
 import {setUser} from "@/utils/auth.ts";
 import {getUserById} from "@/api/user.ts";
 
-axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
-axios.defaults.withCredentials = true;
-axios.defaults.timeout = 8000;
+export const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_BASE_URL,
+    timeout: 8000,
+    withCredentials: true
+});
 
-axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
     async (response) => {
         return response;
     },

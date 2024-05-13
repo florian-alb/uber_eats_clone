@@ -39,6 +39,6 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     logout: async () => {
         removeUser();
         set({user: null});
-        await logout();
+        await logout()
     },
 }));
