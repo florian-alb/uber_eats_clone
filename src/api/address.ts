@@ -3,16 +3,22 @@ import {Address, MapboxAddressConversion, MapboxAddressSuggestion} from "@/types
 import {axiosInstance} from "@/main.tsx";
 import {getUserById} from "@/api/user.ts";
 
-export async function addAddress(body: Address, userId?: string) {
-    console.log(body)
-    if (userId) {
-        const user = await getUserById(userId);
+export async function addAddress(body: Address) {
+    if (body.userId) {
+        const user = await getUserById(body.userId);
         if (!user) {
-            throw new Error(`User with id ${userId} do not exist`)
+            throw new Error(`User with id ${body.userId} do not exist`)
         }
     }
-    body = {...body, userId: userId}
-    return axiosInstance.post<Address>(`address/${body.id}`, body).then((res) => res.data);
+
+    if (body.id === ""){
+        delete body.id
+    }
+
+    if (body.id) {
+        return axiosInstance.put<Address>(`address/${body.id}`, body).then((res) => res.data);
+    }
+    return axiosInstance.post<Address>('address/', body).then((res) => res.data);
 }
 
 export async function convertAddress(position: GeolocationPosition): Promise<MapboxAddressConversion> {

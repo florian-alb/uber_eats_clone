@@ -24,7 +24,6 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
             const response = await signIn(data);
             const decodedToken = jwtDecode(response.data.accessToken) as JwtPayload & { id: string };
             const profile = await get().getProfile(decodedToken.id);
-
             set({user: profile});
             setUser(profile);
 
@@ -34,7 +33,14 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
         }
     },
     refresh: async () => {
-        return await refreshToken();
+        const tokens = await refreshToken();
+
+        const decodedToken = jwtDecode(tokens.accessToken) as JwtPayload & { id: string };
+        const profile = await get().getProfile(decodedToken.id);
+        set({user: profile});
+        setUser(profile);
+
+        return tokens
     },
     logout: async () => {
         removeUser();

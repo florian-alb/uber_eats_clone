@@ -11,7 +11,7 @@ import {useEffect, useState} from "react";
 
 function addressQuery() {
     const query = useQuery()
-    const [address, setAddress] = useState<AddressSuggestion & {id: string|null}>()
+    const [address, setAddress] = useState<AddressSuggestion & { id: string | null }>()
 
     useEffect(() => {
         const address_line1 = query.get("address_line1");
@@ -21,7 +21,13 @@ function addressQuery() {
         const addressId = query.get("address_id");
 
         if (address_line1 && country && place && postcode) {
-            setAddress({address_line1: address_line1, country: country, place: place, postcode: postcode, id: addressId})
+            setAddress({
+                address_line1: address_line1,
+                country: country,
+                place: place,
+                postcode: postcode,
+                id: addressId
+            })
         } else {
             setAddress(undefined)
         }
@@ -30,9 +36,9 @@ function addressQuery() {
     return address
 }
 
-function NormalContent(props: { closeModal: () => void, address: string | null }) {
-    const user = useAuthStore().user;
-    const userAddresses = user?.addresses;
+function NormalContent({closeModal, autoFilledAddress}: { closeModal: () => void, autoFilledAddress: string }) {
+    const { user } = useAuthStore();
+    const userAddresses = user?.user.addresses
 
     return (
         <div id={"normal_content"}>
@@ -41,28 +47,28 @@ function NormalContent(props: { closeModal: () => void, address: string | null }
             </div>
             <div>
                 <div className="grid gap-4 py-4">
-                    <AddressCard address={props.address} filled={true}/>
+                    <AddressCard address={autoFilledAddress}/>
                     {
                         userAddresses?.map((address: Address) => {
-                            return <AddressCard address={address.address}/>
+                            return <AddressCard {...address}/>
                         })
                     }
                 </div>
             </div>
 
             <DialogFooter>
-                <Button className={"w-full"} onClick={props.closeModal}>Terminé</Button>
+                <Button className={"w-full"} onClick={closeModal}>Terminé</Button>
             </DialogFooter>
         </div>
     )
 }
 
-export default function AddressEditionModal(props: { address: string | null }) {
+export default function AddressEditionModal({autoFilledAddress}: { autoFilledAddress: string }) {
     const location = useLocation();
     const navigate = useNavigate();
     const isOpen = location.pathname === '/address/edit';
 
-    const address = addressQuery();
+    const queryAddress = addressQuery();
 
     const closeModal = () => {
         navigate(-1);
@@ -77,9 +83,9 @@ export default function AddressEditionModal(props: { address: string | null }) {
                     <DialogTitle className={"mb-3"}>Détails de la livraison</DialogTitle>
                 </DialogHeader>
 
-                {address ? <EditAddress {...address}/> :
+                {queryAddress ? <EditAddress {...queryAddress}/> :
 
-                    <NormalContent closeModal={closeModal} address={props.address}/>
+                    <NormalContent closeModal={closeModal} autoFilledAddress={autoFilledAddress}/>
 
                 }
             </DialogContent>

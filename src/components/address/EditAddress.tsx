@@ -1,5 +1,5 @@
 import {Input} from "@/components/ui/input.tsx";
-import {Address, AddressSuggestion} from "@/types/address.ts";
+import {Address} from "@/types/address.ts";
 import {Controller, SubmitHandler, useForm} from "react-hook-form";
 import {errorMessages} from "@/utils/errorMessages.ts";
 import {Label} from "@/components/ui/label.tsx";
@@ -8,6 +8,8 @@ import {getUser} from "@/utils/auth.ts";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {countriesList} from "@/utils/countries.ts";
 import {addAddress} from "@/api/address.ts";
+import {useAuthStore} from "@/store/auth.ts";
+import {useNavigate} from "react-router-dom";
 
 type formType = {
     addressLine1: string,
@@ -17,17 +19,22 @@ type formType = {
     country: string,
 }
 
-export default function EditAddress(address: AddressSuggestion, addressId?: string) {
+export default function EditAddress(address: {address_line1: string, country: string, place: string, postcode: string, id: string}) {
     const userId = getUser().user.id
+    const authStore = useAuthStore();
+    const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<formType> = async (data) => {
         const body: Address = {
-            id: addressId,
+            id: address.id,
             address: `${data.addressLine1}, ${data.addressLine2}, ${data.postcode} ${data.place}, ${data.country}`,
             userId: userId
         }
         const response = await addAddress(body)
-        console.log(response)
+        if (response){
+            await authStore.refresh()
+            navigate("/")
+        }
     };
 
     const {

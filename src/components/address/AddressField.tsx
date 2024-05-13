@@ -48,7 +48,7 @@ export default function AddressField() {
                 <ModalContent address={address}/>
             </Dialog>
 
-            <AddressEditionModal address={address}/>
+            <AddressEditionModal autoFilledAddress={address ? address : ""}/>
         </>
     )
 }
