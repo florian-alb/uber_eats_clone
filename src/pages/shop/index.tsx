@@ -17,7 +17,7 @@ type Category = {
 }
 
 //Cart Management
-import {cartAtom, shopNameAtom} from "@/components/Cart.tsx";
+import {cartAtom} from "@/components/Cart.tsx";
 
 type Shop = {
     name: string,
@@ -48,16 +48,15 @@ export default function Shop() {
         }
 
         for (let i = 0; i < cart.length ; i++) {
-            console.log(cart[i].id, product.id)
             if (cart[i].id === product.id) {
                 const newCart = [...cart]
                 newCart[i].quantity += 1
                 setCart(newCart)
+                localStorage.setItem('cart', JSON.stringify(newCart))
                 return
             }
         }
         product.quantity = 1
-
         //update the State and the localStorage Accordingly
         setCart([...cart, product] as Item[])
         localStorage.setItem('cart', JSON.stringify([...cart, product] as Item[]))
