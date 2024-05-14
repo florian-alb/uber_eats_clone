@@ -1,12 +1,12 @@
-import NavbarAuth from "@/components/NavbarAuth.tsx";
 import DeliveryForm from "@/pages/checkout/components/Delivery.tsx";
 import PaymentForm from "@/pages/checkout/components/Payment.tsx";
 import ProductsInfos from "@/pages/checkout/components/ProductsInfos.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {atom} from "jotai/index";
-import {Item} from "@/components/Navbar.tsx";
 import {useAtom} from "jotai";
 import {ChangeEvent, FormEvent, useState} from "react";
+import {Item} from "@/components/navbar/Navbar.tsx";
+import NavbarAuth from "@/components/navbar/NavbarAuth.tsx";
 
 
 export const cartAtom = atom(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart') as string) : [] as Item[])

@@ -50,7 +50,7 @@ function NormalContent({closeModal, autoFilledAddress}: { closeModal: () => void
                     <AddressCard address={autoFilledAddress}/>
                     {
                         userAddresses?.map((address: Address) => {
-                            return <AddressCard {...address}/>
+                            return <AddressCard key={address.id} {...address}/>
                         })
                     }
                 </div>
