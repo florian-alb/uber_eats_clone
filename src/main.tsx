@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import {StrictMode} from "react";
-import {Toaster} from "@/components/ui/toaster.tsx";
 import axios from "axios";
 import {refreshToken} from "@/api/auth.ts";
 import {jwtDecode, JwtPayload} from "jwt-decode";
@@ -26,7 +25,7 @@ axiosInstance.interceptors.response.use(
             try {
                 const tokens = await refreshToken();
                 if (!tokens) {
-                    window.location.href = '/auth/login';
+                    window.location.href = '/login';
                     return Promise.reject(error);
                 }
 
@@ -35,7 +34,7 @@ axiosInstance.interceptors.response.use(
                 setUser(user);
                 return;
             } catch (error) {
-                window.location.href = '/auth/login';
+                window.location.href = '/login';
                 return Promise.reject(error);
             }
         }
@@ -44,7 +43,6 @@ axiosInstance.interceptors.response.use(
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <Toaster/>
         <App/>
     </StrictMode>
 )

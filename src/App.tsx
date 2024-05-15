@@ -1,8 +1,12 @@
-import {RouterProvider} from "react-router-dom";
-import {router} from "@/routes/gest.tsx";
+import {Outlet} from "react-router-dom";
+import RouteProvider from "@/routes";
+import {Toaster} from "@/components/ui/toaster.tsx";
 
 export default function App() {
     return (
-        <RouterProvider router={router}/>
+        <RouteProvider>
+            <Toaster/>
+            <Outlet/>
+        </RouteProvider>
     )
 }
