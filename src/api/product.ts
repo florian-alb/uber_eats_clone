@@ -13,6 +13,6 @@ export async function saveOrUpdateProduct(data: ProductForm): Promise<ProductFor
     }
 }
 
-export async function deleteProduct(id: string): Promise<void> {
-    return axiosInstance.delete(`/product/${id}`).then(r => r.data)
+export async function archiveProduct(id: string): Promise<void> {
+    return axiosInstance.patch(`/product/${id}/archive`).then(r => r.data)
 }

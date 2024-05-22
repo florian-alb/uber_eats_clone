@@ -24,6 +24,9 @@ export const errorMessages = {
     product_description_pattern: 'La description peut uniquement contenir des lettres, des chiffres, de la ponctuation et de espaces.',
     required_product_price:'Veuillez renseigner un prix pour votre produit',
     product_price_pattern: 'Prix invalide',
+    required_shop_name:'Veuillez renseigner un nom pour votre restaurant',
+    required_shop_category:'Veuillez renseigner une catégorie pour votre restaurant',
+
 
 
     min_length: (size: number) => `Longeur minimale: ${size} carractères.`,

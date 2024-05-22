@@ -6,6 +6,7 @@ import {Dashboard} from "@/pages/dashboards/pages/dashboardHome";
 import DashboardOrders from "@/pages/dashboards/pages/dashboardOrders";
 import DashboardProducts from "@/pages/dashboards/pages/dashboardProducts";
 import {ProductEditor} from "@/pages/dashboards/pages/dashboardProducts/components/ProductEditor.tsx";
+import DashboardRestaurant from "@/pages/dashboards/pages/dashboardRestaurant";
 
 
 const protectedRoutes: RouteObject[] = [
@@ -33,6 +34,10 @@ const protectedRoutes: RouteObject[] = [
     {
         path: "/dashboard/:shopId/products/edit",
         element: <ProductEditor/>
+    },
+    {
+        path: "/dashboard/:shopId/settings",
+        element: <DashboardRestaurant/>
     }
 ]
 

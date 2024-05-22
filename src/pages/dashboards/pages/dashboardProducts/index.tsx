@@ -13,7 +13,7 @@ import NoProducts from "@/pages/dashboards/pages/dashboardProducts/components/No
 import {Button} from "@/components/ui/button.tsx";
 import {PlusCircle} from "lucide-react";
 import {useProductStore} from "@/store/product.ts";
-import {deleteProduct} from "@/api/product.ts";
+import {archiveProduct} from "@/api/product.ts";
 import {toast} from "@/components/ui/use-toast.ts";
 
 export default function DashboardProducts() {
@@ -51,25 +51,29 @@ export default function DashboardProducts() {
         navigate("./edit")
     }
 
-    function onDeleteClick(product: Product) {
-        deleteProduct(product.id).then(() => {
+    function onArchiveClick(product: Product) {
+        archiveProduct(product.id).then(() => {
             // Show the toast notification
             toast({
                 variant: "default",
-                title: "Produit Supprimé",
-                description: "Produit supprimé avec succès"
+                title: "Produit Archivé",
+                description: "Produit archivé avec succès"
             });
-
             // Update the products state
-            setProducts(prevProducts => prevProducts?.filter(p => p.id !== product.id));
+            setProducts(prevProducts =>
+                prevProducts?.map(p =>
+                    p.id === product.id ? {...p, isPublished: !p.isPublished} : p
+                )
+            );
+
         }).catch(error => {
             // Handle error
             toast({
                 variant: "destructive",
                 title: "Erreur",
-                description: "Erreur lors de la suppression du produit"
+                description: "Erreur lors de l'archivage du produit"
             });
-            console.error("Error deleting product:", error);
+            console.error("Error archiving product:", error);
         });
     }
 
@@ -102,7 +106,7 @@ export default function DashboardProducts() {
                     <CardContent>
                         {products ?
                             <ProductsTable products={products} onEditClick={onEditClick}
-                                           onDeleteClick={onDeleteClick}/> :
+                                           onArchiveClick={onArchiveClick}/> :
                             <NoProducts/>
                         }
                     </CardContent>

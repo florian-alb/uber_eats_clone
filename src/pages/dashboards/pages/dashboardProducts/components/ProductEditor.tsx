@@ -23,6 +23,7 @@ import ConfirmationModal from "@/pages/dashboards/components/ConfirmationModal.t
 import {useProductStore} from "@/store/product.ts";
 import {useNavigate, useParams} from "react-router-dom";
 import {useState} from "react";
+import {Switch} from "@/components/ui/switch.tsx";
 
 export function ProductEditor() {
     const [isSaved, setIsSaved] = useState(false)
@@ -41,7 +42,8 @@ export function ProductEditor() {
             price: store.product?.price,
             image: store.product?.image ? store.product.image : '/src/assets/image_placeholder.png',
             id: store.product?.id,
-            shopId: shopId
+            shopId: shopId,
+            isPublished: !!store.product?.isPublished
         },
     });
 
@@ -126,7 +128,25 @@ export function ProductEditor() {
                             <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
                                 <Card className={"flex-grow"}>
                                     <CardHeader>
-                                        <CardTitle>Détails du produit</CardTitle>
+                                        <CardTitle>
+                                            <div className={"flex justify-between"}>
+                                                <span>Détails du produit</span>
+
+                                                <Controller
+                                                    name="isPublished"
+                                                    control={control}
+                                                    render={({field}) =>
+                                                        <div className="flex items-center space-x-2">
+                                                            <Switch id="is_publiched"
+                                                                checked={field.value}
+                                                                onCheckedChange={field.onChange}
+                                                            />
+                                                            <Label htmlFor="is_publiched">Publié</Label>
+                                                        </div>
+                                                    }
+                                                />
+                                            </div>
+                                        </CardTitle>
                                         <CardDescription>
                                             Modifiez les détails du produit
                                         </CardDescription>

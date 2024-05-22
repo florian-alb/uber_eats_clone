@@ -5,6 +5,7 @@ export type Product = {
     name: string;
     description: string;
     price: number;
+    isPublished: boolean;
     createdAt: Date;
     image: string | null;
     menuId: string | null;
@@ -13,13 +14,14 @@ export type Product = {
 }
 
 export type ProductWithOrders = Product & {
-    orderProducts : Order[]
+    orderProducts: Order[]
 }
 
 export type ProductForm = {
     id?: string;
     name?: string;
     description?: string;
+    isPublished: boolean;
     price?: number;
     image: string | null;
     shopId?: string;

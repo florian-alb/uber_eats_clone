@@ -13,7 +13,14 @@ export type Shop = {
     products: Product[];
     reviews: Review[];
     address: Address;
-    category: Category;
+    category?: Category;
+}
+
+export type ShopForm = {
+    id?: string;
+    name?: string;
+    category?: string;
+    image?: string;
 }
 
 export type ShopDisplay = Pick<Shop, 'id' | 'name' | 'image' | 'category' >
