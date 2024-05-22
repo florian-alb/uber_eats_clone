@@ -7,3 +7,7 @@ export async function getShops(categoryId?: string): Promise<Shop[]> {
         await axiosInstance.get('shop')
     return (res.data);
 }
+
+export async function getShopById(id: string): Promise<Shop> {
+    return await axiosInstance.get(`shop/${id}`).then(r => r.data)
+}

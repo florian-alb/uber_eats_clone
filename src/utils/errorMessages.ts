@@ -18,4 +18,13 @@ export const errorMessages = {
     required_postcode: 'Code postal requis',
     required_city: 'Ville requise',
     required_country: 'Pays requis',
+    required_product_name: 'Veuillez renseigner un nom pour votre produit',
+    product_name_pattern: 'Le nom peut uniquement contenir des lettres, des chiffres et de espaces.',
+    required_product_description:'Veuillez renseigner une description pour votre produit',
+    product_description_pattern: 'La description peut uniquement contenir des lettres, des chiffres, de la ponctuation et de espaces.',
+    required_product_price:'Veuillez renseigner un prix pour votre produit',
+    product_price_pattern: 'Prix invalide',
+
+
+    min_length: (size: number) => `Longeur minimale: ${size} carractères.`,
 };

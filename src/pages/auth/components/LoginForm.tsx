@@ -62,7 +62,7 @@ export function LoginForm() {
             <div className={"flex flex-col justify-center items-center"}>
                 <Card className="w-full max-w-sm rounded">
                     <CardHeader>
-                        <CardTitle className="text-2xl">Connection</CardTitle>
+                        <CardTitle className="text-2xl">Connexion</CardTitle>
                         <CardDescription>
                             Saisissez votre Email et mot de passe ci-dessous pour vous connecter à votre compte.
                         </CardDescription>

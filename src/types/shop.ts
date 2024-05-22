@@ -17,3 +17,4 @@ export type Shop = {
 }
 
 export type ShopDisplay = Pick<Shop, 'id' | 'name' | 'image' | 'category' >
+export type ShopCustomer = Omit<Shop, 'orders' | 'category'>

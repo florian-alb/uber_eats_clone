@@ -8,4 +8,3 @@ export function getUserById(id: string): Promise<User> {
 export function getAllUsers(): Promise<User[]> {
     return axiosInstance.get(`user`).then(res => res.data)
 }
-

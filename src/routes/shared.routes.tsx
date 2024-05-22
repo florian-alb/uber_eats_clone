@@ -2,7 +2,6 @@ import type {RouteObject} from "react-router-dom";
 import Home from "@/pages/home";
 import Shop from "@/pages/shop";
 import ErrorPage from "@/pages/errors/ErrorPage.tsx";
-import {Dashboard} from "@/pages/dashboards";
 const sharedRoutes: RouteObject[] = [
     {
         path: "/",
@@ -22,10 +21,6 @@ const sharedRoutes: RouteObject[] = [
         path: "/shop/:id",
         element: <Shop/>,
         errorElement: <ErrorPage/>
-    },
-    {
-        path: "/dashboard",
-        element: <Dashboard/>
     }
 ];
 
