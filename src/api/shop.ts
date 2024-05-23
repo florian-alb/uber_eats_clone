@@ -20,3 +20,7 @@ export async function saveOrUpdateShop(data: ShopForm): Promise<ProductForm> {
         return axiosInstance.post(`/shop/`, data).then(r => r.data)
     }
 }
+
+export async function newShop(name: string): Promise<Shop> {
+    return await axiosInstance.post('shop', {name}).then(r => r.data)
+}

@@ -53,7 +53,7 @@ export default function Shop() {
 
     //Retrieve the shop ID from the URL
     useEffect(() => {
-        getShopById(id).then(data => setShopInfo(data))
+        getShopById(id as string).then(data => setShopInfo(data))
     }, [])
 
 

@@ -15,7 +15,7 @@ export default function ImageUpload({file, onChange}: FileUploaderProps) {
     const ctxProviderRef = useRef<InstanceType<LR.UploadCtxProvider>>(null);
 
     const handleRemoveClick = useCallback(
-        () => onChange({uuid: file.uuid, cdnUrl: "/src/assets/image_placeholder.png"}),
+        () => onChange({uuid: file.uuid, cdnUrl: "/assets/image_placeholder.png"}),
         [file, onChange],
     );
 
@@ -71,7 +71,7 @@ export default function ImageUpload({file, onChange}: FileUploaderProps) {
                         <img
                             className="aspect-square w-full rounded-md object-cover"
                             key={file.uuid}
-                            src={file.cdnUrl?.includes("http") ? `${file.cdnUrl}/` : "/src/assets/image_placeholder.png"}
+                            src={file.cdnUrl?.includes("http") ? `${file.cdnUrl}/` : "/assets/image_placeholder.png"}
                             height="300"
                             width="300"
                             alt="profile image"
@@ -90,7 +90,7 @@ export default function ImageUpload({file, onChange}: FileUploaderProps) {
                     :
                     <img
                         className="aspect-square w-full rounded-md object-cover"
-                        src="/src/assets/image_placeholder.png"
+                        src="/assets/image_placeholder.png"
                         height="300"
                         width="300"
                         alt="restaurant_image"

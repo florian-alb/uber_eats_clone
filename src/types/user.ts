@@ -12,7 +12,8 @@ export type User = {
     role: Role
     addresses: Address[]
     orders: Order[]
-    shop: Shop
+    shop?: Shop
+    shopId?: string
 }
 
 export type RegisterUser = {
@@ -20,6 +21,15 @@ export type RegisterUser = {
     firstName: string;
     lastName: string;
     password: string;
+}
+
+export type RegisterUserShop = {
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    shopId: string
+    shop: Shop
 }
 
 enum Role {

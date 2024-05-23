@@ -19,14 +19,14 @@ type formType = {
     country: string,
 }
 
-export default function EditAddress(address: {address_line1: string, country: string, place: string, postcode: string, id: string}) {
+export default function EditAddress(address: {address_line1: string, country: string, place: string, postcode: string, id: string | null}) {
     const userId = getUser().user.id
     const authStore = useAuthStore();
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<formType> = async (data) => {
         const body: Address = {
-            id: address.id,
+            id: address.id as string,
             address: `${data.addressLine1}, ${data.addressLine2}, ${data.postcode} ${data.place}, ${data.country}`,
             userId: userId
         }

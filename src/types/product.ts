@@ -11,6 +11,7 @@ export type Product = {
     menuId: string | null;
     shopId: string;
     quantity: number;
+    orderId: string;
 }
 
 export type ProductWithOrders = Product & {
