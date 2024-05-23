@@ -8,6 +8,7 @@ export const cartAtom = atom(localStorage.getItem('cart') ? JSON.parse(localStor
 export default function ProductsInfos(){
     const [items, ] = useAtom(cartAtom)
 
+
     return (
         items.map((item: Item, index : number) => {
             return (
