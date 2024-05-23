@@ -43,9 +43,8 @@ export default function Navbar() {
                             )}
 
                             <SheetDescription className="flex flex-col gap-5 py-5 font-medium">
-                                <a className="hover:underline" href="#">Créez un compte professionnel</a>
-                                <a className="hover:underline" href="#">Ajoutez votre restaurant</a>
-                                <a className="hover:underline" href="#">Devenez coursier-partenaire</a>
+                                <a className="hover:underline" href="/new-restaurant">Ajoutez votre restaurant</a>
+                                <a className="hover:underline" href="#">Administer</a>
                             </SheetDescription>
                         </SheetHeader>
                     </SheetContent>

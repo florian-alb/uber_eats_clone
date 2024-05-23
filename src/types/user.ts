@@ -1,5 +1,6 @@
 import {Address} from "@/types/address.ts";
 import {Order} from "@/types/order.ts";
+import {Shop} from "@/types/shop.ts";
 
 export type User = {
     id: string;
@@ -11,6 +12,7 @@ export type User = {
     role: Role
     addresses: Address[]
     orders: Order[]
+    shop: Shop
 }
 
 export type RegisterUser = {
