@@ -12,6 +12,7 @@ export type Item = {
     price: string
     quantity: number
     shopId: string
+    image: string
 }
 
 export default function Navbar() {

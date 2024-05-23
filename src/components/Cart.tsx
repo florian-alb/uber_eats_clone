@@ -2,8 +2,8 @@ import {Button} from "@/components/ui/button.tsx";
 import {Link} from "react-router-dom";
 import {atom, useAtom} from "jotai/index";
 import {CircleMinus} from "lucide-react";
-import {Item} from "@/components/Navbar.tsx";
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet.tsx";
+import {Item} from "@/components/navbar/Navbar.tsx";
 
 export const cartAtom = atom(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart') as string) : [] as Item[])
 

@@ -9,7 +9,7 @@ import EditAddress from "@/components/address/EditAddress.tsx";
 import {useQuery} from "@/lib/utils.ts";
 import {useEffect, useState} from "react";
 
-function addressQuery() {
+function AddressQuery() {
     const query = useQuery()
     const [address, setAddress] = useState<AddressSuggestion & { id: string | null }>()
 
@@ -38,7 +38,7 @@ function addressQuery() {
 
 function NormalContent({closeModal, autoFilledAddress}: { closeModal: () => void, autoFilledAddress: string }) {
     const { user } = useAuthStore();
-    const userAddresses = user?.user.addresses
+    const userAddresses = user?.addresses
 
     return (
         <div id={"normal_content"}>
@@ -68,7 +68,7 @@ export default function AddressEditionModal({autoFilledAddress}: { autoFilledAdd
     const navigate = useNavigate();
     const isOpen = location.pathname === '/address/edit';
 
-    const queryAddress = addressQuery();
+    const queryAddress = AddressQuery();
 
     const closeModal = () => {
         navigate(-1);

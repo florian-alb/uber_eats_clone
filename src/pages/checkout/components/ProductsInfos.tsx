@@ -1,5 +1,5 @@
 import {atom} from "jotai/index";
-import {Item} from "@/components/Navbar.tsx";
+import {Item} from "@/components/navbar/Navbar.tsx";
 import {useAtom} from "jotai";
 
 
