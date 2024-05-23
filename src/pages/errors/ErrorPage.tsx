@@ -7,7 +7,7 @@ export default function ErrorPage() {
         <>
             <NavbarAuth />
             <div className="flex justify-center items-center h-screen flex-col">
-                <img src="/public/assets/svg/Error.svg" className="object-cover" alt="Not found"/>
+                <img src="/assets/svg/Error.svg" className="object-cover" alt="Not found"/>
                 <div className="flex justify-center flex-col gap-5">
                     <h1 className="text-4xl font-semibold w-3/4 text-center m-auto mt-5">Rien à se mettre sous la dent ici…</h1>
                     <p className="m-auto text-lg">Découvrez de bons petits plats.</p>

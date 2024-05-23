@@ -23,7 +23,7 @@ export default function Navbar() {
             <div className="flex">
                 <Sheet>
                     <SheetTrigger>
-                        <img src="/public/assets/svg/burger-menu.svg" alt="menu"
+                        <img src="/assets/svg/burger-menu.svg" alt="menu"
                              className="min-w-6 min-h-6 w-6 h-6 bold mt-1"/>
                     </SheetTrigger>
                     <SheetContent className="bg-white border-none pt-14" side={"left"}>

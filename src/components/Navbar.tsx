@@ -44,7 +44,7 @@ export default function Navbar() {
             <div className="flex">
                 <Sheet>
                     <SheetTrigger>
-                        <img src="/public/assets/svg/burger-menu.svg" alt="menu"
+                        <img src="/assets/svg/burger-menu.svg" alt="menu"
                              className="min-w-6 min-h-6 w-6 h-6 bold mt-1"/>
                     </SheetTrigger>
                     <SheetContent className="bg-white border-none pt-14" side={"left"}>
@@ -78,7 +78,7 @@ export default function Navbar() {
 
                 <Input type="text"
                        className="DeliverPosition flex items-center w-full max-w-64 rounded-full px-10   border-none font-medium"/>
-                <img src="/public/assets/svg/map.svg" alt="location"
+                <img src="/assets/svg/map.svg" alt="location"
                      className="absolute mt-2 mx-2 min-w-6 min-h-6 w-6 h-6 gree"/>
 
                 <div className="min-w-96 w-full mx-5">
@@ -90,7 +90,7 @@ export default function Navbar() {
             </div>
             <Popover>
                 <PopoverTrigger className="flex">
-                    <img src="/public/assets/svg/cart.svg" alt="search"
+                    <img src="/assets/svg/cart.svg" alt="search"
                          className="min-w-6 min-h-6 max-h-8 max-w-8 rounded-full"/>
                     <div
                         className="absolute min-w-4 mx-6 max-h-5 bg-ub-green top-3 rounded-full text-white text-xs flex justify-center items-center">0

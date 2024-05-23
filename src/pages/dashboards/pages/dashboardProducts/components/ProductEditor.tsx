@@ -44,7 +44,7 @@ export function ProductEditor() {
             name: store.product?.name,
             description: store.product?.description,
             price: store.product?.price,
-            image: store.product?.image ? store.product.image : '/public/assets/image_placeholder.png',
+            image: store.product?.image ? store.product.image : '/assets/image_placeholder.png',
             id: store.product?.id,
             shopId: shopId,
             isPublished: !!store.product?.isPublished

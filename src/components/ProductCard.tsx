@@ -27,7 +27,7 @@ export default function ProductCard({product, addToCart}: { product: Product, ad
         <Dialog>
             <DialogTrigger>
                 <div>
-                    <img src={product.image ? product.image : "/public/assets/svg/food0.jpeg"} alt={product.name}
+                    <img src={product.image ? product.image : "/assets/svg/food0.jpeg"} alt={product.name}
                          className="w-48 h-48 object-cover rounded-xl"/>
                     <div className="flex flex-col text-start">
                         <h1 className="text-l font-medium">{product.name}</h1>
@@ -37,7 +37,7 @@ export default function ProductCard({product, addToCart}: { product: Product, ad
             </DialogTrigger>
             <DialogContent className="mt-20 max-w-6xl bg-white h-full pt-20">
                 <div className="flex">
-                    <img src={product.image ? product.image : "/public/assets/svg/food0.jpeg"} alt={product.name}
+                    <img src={product.image ? product.image : "/assets/svg/food0.jpeg"} alt={product.name}
                          className="w-1/2 h-1/2 object-cover"/>
                     <DialogHeader className="ml-4 flex gap-1 w-full">
                         <DialogTitle className="text-4xl">{product.name ? product.name : "No name found"}</DialogTitle>
