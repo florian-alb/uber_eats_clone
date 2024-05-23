@@ -74,7 +74,7 @@ export default function Cart() {
     return (
             <Sheet>
                 <SheetTrigger className="flex">
-                    <img src="/src/assets/svg/cart.svg" alt="search"
+                    <img src="/public/assets/svg/cart.svg" alt="search"
                          className="min-w-6 min-h-6 max-h-8 max-w-8 rounded-full"/>
                     <div
                         className="absolute min-w-4 mx-6 max-h-5 bg-ub-green top-3 rounded-full text-white text-xs flex justify-center items-center">{getNumberOfProducts(cart)}
@@ -108,7 +108,7 @@ export default function Cart() {
 
             // <Popover>
             //     <PopoverTrigger className="flex">
-            //         <img src="/src/assets/svg/cart.svg" alt="search"
+            //         <img src="/public/assets/svg/cart.svg" alt="search"
             //              className="min-w-6 min-h-6 max-h-8 max-w-8 rounded-full"/>
             //         <div
             //             className="absolute min-w-4 mx-6 max-h-5 bg-ub-green top-3 rounded-full text-white text-xs flex justify-center items-center">{getNumberOfProducts(items)}

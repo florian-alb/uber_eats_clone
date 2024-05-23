@@ -52,7 +52,7 @@ export default function ProductsTable({products, onEditClick, onArchiveClick}: {
                                 alt="Product image"
                                 className="aspect-square rounded-md object-cover"
                                 height="64"
-                                src={product.image ? product.image : "/src/assets/image_placeholder.png"}
+                                src={product.image ? product.image : "/public/assets/image_placeholder.png"}
                                 width="64"
                             />
                         </TableCell>
