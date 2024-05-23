@@ -1,6 +1,5 @@
 import {
-    ChevronLeft, EuroIcon,
-    Upload,
+    ChevronLeft, EuroIcon
 } from "lucide-react"
 import {Button, buttonVariants} from "@/components/ui/button"
 import {
@@ -24,12 +23,17 @@ import {useProductStore} from "@/store/product.ts";
 import {useNavigate, useParams} from "react-router-dom";
 import {useState} from "react";
 import {Switch} from "@/components/ui/switch.tsx";
+import ImageUpload from "@/pages/dashboards/components/ImageUpload.tsx";
+import {OutputFileEntry} from "@uploadcare/blocks";
 
 export function ProductEditor() {
     const [isSaved, setIsSaved] = useState(false)
     const store = useProductStore();
     const navigate = useNavigate();
     const {shopId} = useParams();
+    const [photo, setPhoto] = useState<Pick<OutputFileEntry, | "uuid" | "cdnUrl">>(
+        {cdnUrl: store.product? store.product.image : null, uuid: store.product? store.product.id : null}
+    );
 
     const {
         control,
@@ -48,6 +52,9 @@ export function ProductEditor() {
     });
 
     const onSubmit: SubmitHandler<ProductForm> = async data => {
+        if (photo.cdnUrl){
+           data.image = photo.cdnUrl
+        }
         await saveOrUpdateProduct(data)
             .then(() => {
                     setIsSaved(true);
@@ -138,8 +145,8 @@ export function ProductEditor() {
                                                     render={({field}) =>
                                                         <div className="flex items-center space-x-2">
                                                             <Switch id="is_publiched"
-                                                                checked={field.value}
-                                                                onCheckedChange={field.onChange}
+                                                                    checked={field.value}
+                                                                    onCheckedChange={field.onChange}
                                                             />
                                                             <Label htmlFor="is_publiched">Publié</Label>
                                                         </div>
@@ -254,25 +261,12 @@ export function ProductEditor() {
                                     <CardHeader>
                                         <CardTitle>Images du Produit</CardTitle>
                                         <CardDescription>
-                                            Ajoutez, Mofifiez ou supprimez l'image du produit.
+                                            Modifiez ou supprimez l'image du produit.
                                         </CardDescription>
                                     </CardHeader>
                                     <CardContent>
                                         <div className="grid gap-2">
-                                            <img
-                                                alt="Product image"
-                                                className="aspect-square w-full rounded-md object-cover bg-muted"
-                                                height="300"
-                                                src={store.product?.image ? store.product.image : "/src/assets/image_placeholder.png"}
-                                                width="300"
-                                            />
-                                            <div className="grid grid-cols-3 gap-2">
-                                                <button
-                                                    className="flex aspect-square w-full items-center justify-center rounded-md border border-dashed">
-                                                    <Upload className="h-4 w-4 text-muted-foreground"/>
-                                                    <span className="sr-only">Upload</span>
-                                                </button>
-                                            </div>
+                                            <ImageUpload file={photo} onChange={setPhoto}/>
                                         </div>
                                     </CardContent>
                                 </Card>

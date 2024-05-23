@@ -8,6 +8,13 @@ body,
     height: 100%;
 }
 
+.uploadcare-config {
+    --darkmode: 0;
+    --h-accent: 135;
+    --s-accent: 51%;
+    --l-accent: 50%;
+}
+
 @layer base {
     :root {
         --background: 0 0% 100%;

@@ -9,7 +9,7 @@ import {CircleUser} from "lucide-react";
 import {useAuthStore} from "@/store/auth.ts";
 import {Link} from "react-router-dom";
 
-export default function AccountSettings({shopName}: {shopName?: string}) {
+export default function AccountSettings({shopName, shopId}: {shopName?: string, shopId?: string}) {
     const {logout} = useAuthStore();
 
     return (
@@ -23,7 +23,7 @@ export default function AccountSettings({shopName}: {shopName?: string}) {
                 <DropdownMenuLabel>{shopName}</DropdownMenuLabel>
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem>
-                    <Link to={'/settings'}>
+                    <Link to={`/dashboard/${shopId}/settings`}>
                         Paramètres
                     </Link>
                 </DropdownMenuItem>

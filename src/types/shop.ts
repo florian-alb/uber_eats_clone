@@ -20,7 +20,7 @@ export type ShopForm = {
     id?: string;
     name?: string;
     category?: string;
-    image?: string;
+    image: string | null;
 }
 
 export type ShopDisplay = Pick<Shop, 'id' | 'name' | 'image' | 'category' >

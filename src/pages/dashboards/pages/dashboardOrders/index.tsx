@@ -1,5 +1,4 @@
 import DashboardNav, {DashboardNAvLinks} from "@/pages/dashboards/navbar/components/DashboardNav.tsx";
-import SearchBar from "@/pages/dashboards/navbar/components/SearchBar.tsx";
 import AccountSettings from "@/pages/dashboards/navbar/components/AccountSettings.tsx";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -75,8 +74,8 @@ export default function DashboardOrders() {
             <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
                 <DashboardNav links={links}/>
                 <div className="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-                    <SearchBar/>
-                    <AccountSettings shopName={shop?.name}/>
+                    {/*<SearchBar/>*/}
+                    <AccountSettings shopName={shop?.name} shopId={shop?.id}/>
                 </div>
             </header>
             <main className="flex flex-1 flex-col gap-4 p-4 md:p-8">

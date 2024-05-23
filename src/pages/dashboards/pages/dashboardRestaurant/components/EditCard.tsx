@@ -3,7 +3,6 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
@@ -19,9 +18,14 @@ import {useEffect, useState} from "react";
 import {Category} from "@/types/category.ts";
 import {getCategories} from "@/api/category.ts";
 import {saveOrUpdateShop} from "@/api/shop.ts";
+import ImageUpload from "@/pages/dashboards/components/ImageUpload.tsx";
+import {OutputFileEntry} from "@uploadcare/blocks";
 
 export default function EditCard({shop}: { shop: Shop }) {
     const [categories, setCategories] = useState<Category[]>()
+    const [photo, setPhoto] = useState<Pick<OutputFileEntry, | "uuid" | "cdnUrl" >>(
+        {cdnUrl : shop.image, uuid: shop.id}
+    );
 
     useEffect(() => {
         getCategories().then(c => setCategories(c))
@@ -35,13 +39,14 @@ export default function EditCard({shop}: { shop: Shop }) {
         defaultValues: {
             name: shop.name,
             category: shop.category?.name,
-            image: shop.image ? shop.image : '/src/assets/image_placeholder.png',
+            image: shop.image
         },
     });
 
 
     const onSubmit: SubmitHandler<ShopForm> = async data => {
         data.id = shop.id
+        data.image = photo?.cdnUrl
         await saveOrUpdateShop(data)
             .then(() => {
                     toast({
@@ -64,18 +69,24 @@ export default function EditCard({shop}: { shop: Shop }) {
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Card>
-                <CardHeader>
-                    <CardTitle>Mon Restaurant</CardTitle>
-                    <CardDescription>
-                        Mofifiez les informations de votre restaurant
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
+        <Card>
+            <CardHeader>
+                <CardTitle>Mon Restaurant</CardTitle>
+                <CardDescription>
+                    Mofifiez les informations de votre restaurant
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
 
-                    <div className="grid lg:grid-cols-2 gap-4 items-start md:grid-cols-1 sm:grid-cols-1">
-                        <div className="grid gap-3">
+                <div className="flex items-start flex-wrap">
+                    <form onSubmit={handleSubmit(onSubmit)} className={"lg:w-2/3 sm:w-full p-2 grid grid-cols-1 gap-4"}>
+                        <Controller
+                            name={"image"}
+                            control={control}
+                            render={({field}) => <input type={"hidden"} {...field}/>}
+                        />
+
+                        <div className="grid col-span-2 gap-3">
                             <div className="grid gap-3">
                                 <Label htmlFor="name">Nom</Label>
                                 <Controller
@@ -122,7 +133,7 @@ export default function EditCard({shop}: { shop: Shop }) {
                                             <SelectContent>
 
                                                 {categories && categories.map(category => (
-                                                    <SelectItem value={category.name}>
+                                                    <SelectItem key={category.id} value={category.name}>
                                                         <div className="flex items-center gap-3">
                                                             <img
                                                                 className={'size-6'}
@@ -141,37 +152,17 @@ export default function EditCard({shop}: { shop: Shop }) {
                                 )}
                             </div>
                         </div>
+                        <Button className={"m-auto"}>Mettre à jour</Button>
+                    </form>
 
-                        <div className="grid gap-2">
-                            <Controller
-                                name="image"
-                                control={control}
-                                rules={{
-                                    required: errorMessages.required_shop_name
-                                }}
-                                render={({field}) =>
-                                    <>
-                                        <input type="file" id="image" name={field.name}/>
-                                        <img alt="Product image"
-                                             className="aspect-square w-full rounded-md object-cover"
-                                             height="300"
-                                             src="/src/assets/image_placeholder.png"
-                                             width="300"
-                                        />
-                                    </>
-                                }
-                            />
-                            {errors.name && (
-                                <span className="text-red-500 text-xs">{errors.name.message}</span>
-                            )}
-                        </div>
+                    <div className="lg:w-1/3 sm:w-full grid gap-2 p-2">
+                        <ImageUpload
+                            file={photo} onChange={setPhoto}
+                        />
                     </div>
-                </CardContent>
-                <CardFooter className="border-t px-6 py-4">
-                    <Button>Mettre à jour</Button>
-                </CardFooter>
-            </Card>
-        </form>
+                </div>
+            </CardContent>
+        </Card>
     )
 }
 

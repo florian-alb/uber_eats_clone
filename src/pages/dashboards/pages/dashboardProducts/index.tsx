@@ -3,7 +3,6 @@ import {getShopById} from "@/api/shop.ts";
 import {useNavigate, useParams} from "react-router-dom";
 import {Shop} from "@/types/shop.ts";
 import DashboardNav, {DashboardNAvLinks} from "@/pages/dashboards/navbar/components/DashboardNav.tsx";
-import SearchBar from "@/pages/dashboards/navbar/components/SearchBar.tsx";
 import AccountSettings from "@/pages/dashboards/navbar/components/AccountSettings.tsx";
 import {Card, CardContent} from "@/components/ui/card.tsx";
 import DashboardCardTitle from "@/pages/dashboards/pages/dashboardHome/components/DashboardCardTitle.tsx";
@@ -83,8 +82,8 @@ export default function DashboardProducts() {
                 <div className="border-b flex h-16 items-center px-4 md:px-6">
                     <DashboardNav links={links}/>
                     <div className="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-                        <SearchBar/>
-                        <AccountSettings shopName={shop?.name}/>
+                        {/*<SearchBar/>*/}
+                        <AccountSettings shopName={shop?.name} shopId={shop?.id}/>
                     </div>
 
                 </div>

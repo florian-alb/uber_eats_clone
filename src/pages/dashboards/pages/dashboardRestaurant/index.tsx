@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import {Shop} from "@/types/shop.ts";
 import {getShopById} from "@/api/shop.ts";
 import DashboardNav, {DashboardNAvLinks} from "@/pages/dashboards/navbar/components/DashboardNav.tsx";
-import SearchBar from "@/pages/dashboards/navbar/components/SearchBar.tsx";
 import AccountSettings from "@/pages/dashboards/navbar/components/AccountSettings.tsx";
 import EditCard from "@/pages/dashboards/pages/dashboardRestaurant/components/EditCard.tsx";
 
@@ -29,13 +28,12 @@ export default function DashboardRestaurant() {
     ]
 
     return (
-        <div className="min-h-screen w-full">
+        <div className="lg:h-screen min-h-screen w-full">
             <header className="sticky top-0 gap-4 bg-background flex flex-col">
                 <div className="border-b flex h-16 items-center px-4 md:px-6">
                     <DashboardNav links={links}/>
                     <div className="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-                        <SearchBar/>
-                        <AccountSettings shopName={shop?.name}/>
+                        <AccountSettings shopName={shop?.name} shopId={shop?.id}/>
                     </div>
 
                 </div>
