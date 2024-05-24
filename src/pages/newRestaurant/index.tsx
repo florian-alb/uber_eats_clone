@@ -3,23 +3,20 @@ import {useAuthStore} from "@/store/auth.ts";
 import {useNavigate} from "react-router-dom";
 import {RegisterRestaurant} from "@/pages/newRestaurant/components/RegisterRestaurant.tsx";
 import {useEffect} from "react";
-import {User} from "@/types/user.ts";
 
 export default function NewRestaurant() {
     const user = useAuthStore().user
     const navigate = useNavigate()
 
-    function getShop() {
-        if (user.user?.shop) {
-            navigate(`/dashboard/${user.user.shop.id}`)
-        } else {
-            return (<></>)
-        }
-    }
-
     useEffect(() => {
+        console.log(user)
+        function getShop() {
+            if (user?.shop) {
+                navigate(`/dashboard/${user.shop.id}`)
+            }
+        }
         getShop()
-    }, [getShop]);
+    }, [navigate, user]);
 
     return (
         <>
